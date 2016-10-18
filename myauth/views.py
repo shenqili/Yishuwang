@@ -4,11 +4,14 @@ Definition of views.
 
 from django.shortcuts import render
 from django.http import HttpRequest
+from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from datetime import datetime
-from django import forms  
-from django.contrib.auth.models import User
+from django import forms
+#from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length=254,
@@ -27,46 +30,44 @@ class RegisterForm(forms.Form):
                                    'class': 'form-control',
                                    'placeholder':'Password'}))
 
-def register(request):        
-    if request.method=='POST':   
-        errors=[]   
-        registerForm=RegisterForm(request.POST) 
+def register(request):
+    if request.method=='POST':
+        errors=[]
+        registerForm=RegisterForm(request.POST)
 
-        if not registerForm.is_valid():  
-            return render(request, "app/register.html",{'form':registerForm,'errors':errors})
-        username = registerForm.cleaned_data['username']  
-        email = registerForm.cleaned_data['email']  
-        password1 = registerForm.cleaned_data['password1']  
+        if not registerForm.is_valid():
+            return render(request, "myauth/register.html",{'form':registerForm,'errors':errors})
+        username = registerForm.cleaned_data['username']
+        email = registerForm.cleaned_data['email']
+        password1 = registerForm.cleaned_data['password1']
         password2= registerForm.cleaned_data['password2']
-        if password1!=password2:  
-            errors.append("两次输入的密码不一致!")  
-            return render(request, "app/register.html",{'form':registerForm,'errors':errors})           
-        filterResult=User.objects.filter(username=username) 
-        if len(filterResult)>0:  
-            errors.append("用户名已存在")  
-            return render(request, "app/register.html",{'form':registerForm,'errors':errors})   
-              
-        user = User.objects.create_user(username, email, password1)
-        user.isActive=True
-        user.isStaff=False
-        user.save()   
-        #登录前需要先验证  
-        newUser=auth.authenticate(username=username,password=password1) 
+        if password1!=password2:
+            errors.append("两次输入的密码不一致!")
+            return render(request, "myauth/register.html",{'form':registerForm,'errors':errors})
+        #filterResult=User.objects.filter(username=username)
+        #if len(filterResult)>0:
+        #    errors.append("用户名已存在")
+        #    return render(request, "myauth/register.html",{'form':registerForm,'errors':errors})
+        user = User.objects.create_user(username,email,password1)
+        user.save()
+        #登录前需要先验证
+        newUser=auth.authenticate(username=username,password=password1)
         if newUser is not None:
             auth.login(request, newUser)
-            return HttpResponseRedirect("/")  
+            return HttpResponseRedirect("/")
     else:
         registerForm=RegisterForm();
-        return render(request, "app/register.html",{'form':registerForm,})
-      
-    return render(request, "app/register.html") 
-    
+        return render(request, "myauth/register.html",{'form':registerForm,})
+
+    return render(request, "myauth/register.html")
+
+
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/index.html',
+        'myauth/index.html',
         {
             'title':'Home Page',
             'year':datetime.now().year,
@@ -78,7 +79,7 @@ def contact(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/contact.html',
+        'myauth/contact.html',
         {
             'title':'Contact',
             'message':'Your contact page.',
@@ -91,7 +92,7 @@ def about(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/about.html',
+        'myauth/about.html',
         {
             'title':'About',
             'message':'Your application description page.',

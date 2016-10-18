@@ -74,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'DjangoWebProject3.wsgi.application'
+LOGIN_REDIRECT_URL = r'/'
 
 
 # Database

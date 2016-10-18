@@ -27,7 +27,7 @@
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
-                {% include 'app/loginpartial.html' %}
+                {% include 'myauth/loginpartial.html' %}
             </div>
         </div>
     </div>
@@ -40,9 +40,9 @@
         </footer>
     </div>
 
-    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
-    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
-    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    <script src="{% static 'myauth/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'myauth/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'myauth/scripts/respond.js' %}"></script>
 {% block scripts %}{% endblock %}
 
 </body>

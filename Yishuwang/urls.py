@@ -1,13 +1,13 @@
 """
-Definition of urls for DjangoWebProject3.
+Definition of urls for Yishuwang.
 """
 
 from datetime import datetime
 from django.conf.urls import url
 import django.contrib.auth.views
 
-import app.forms
-import app.views
+import myauth.forms
+import myauth.views
 
 # Uncomment the next lines to enable the admin:
 from django.conf.urls import include
@@ -16,15 +16,15 @@ admin.autodiscover()
 
 urlpatterns = [
     # Examples:
-    url(r'^$', app.views.home, name='home'),
-    url(r'^contact$', app.views.contact, name='contact'),
-    url(r'^about', app.views.about, name='about'),
-    url(r'register',app.views.register, name='register'),
+    url(r'^$', myauth.views.home, name='home'),
+    url(r'^contact$', myauth.views.contact, name='contact'),
+    url(r'^about', myauth.views.about, name='about'),
+    url(r'^register', myauth.views.register, name='register'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
-            'template_name': 'app/login.html',
-            'authentication_form': app.forms.BootstrapAuthenticationForm,
+            'template_name': 'myauth/login.html',
+            'authentication_form': myauth.forms.BootstrapAuthenticationForm,
             'extra_context':
             {
                 'title': 'Log in',

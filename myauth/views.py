@@ -1,6 +1,5 @@
 """
 Definition of views.
-aa
 """
 
 from django.shortcuts import render

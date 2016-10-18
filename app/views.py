@@ -11,10 +11,21 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(label='username')
-    email = forms.EmailField(label='e-mail')
-    password1 = forms.CharField(label='password',widget=forms.PasswordInput)
-    password2= forms.CharField(label='Confirm',widget=forms.PasswordInput)
+    username = forms.CharField(max_length=254,
+                               widget=forms.TextInput({
+                                   'class': 'form-control',
+                                   'placeholder': 'User name'}))
+    email = forms.EmailField(label='e-mail',widget=forms.TextInput({
+                                   'class': 'form-control',
+                                   'placeholder': 'e-mail'}))
+    password1 = forms.CharField(label='Password',
+                               widget=forms.PasswordInput({
+                                   'class': 'form-control',
+                                   'placeholder':'Password'}))
+    password2= forms.CharField(label='confirm',
+                               widget=forms.PasswordInput({
+                                   'class': 'form-control',
+                                   'placeholder':'Password'}))
 
 def register(request):        
     if request.method=='POST':   

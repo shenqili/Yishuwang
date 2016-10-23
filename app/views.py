@@ -14,11 +14,22 @@ from django.template import RequestContext
 from django.contrib import auth
 
 from django import forms
-class UserForm(forms.Form):
-  email=forms.EmailField(label='email',max_length=50,widget=forms.TextInput(attrs={'size': 30,}))
-  password1=forms.CharField(label='password',max_length=30,widget=forms.PasswordInput(attrs={'size': 20,}))
-  username=forms.CharField(label='username',max_length=30,widget=forms.TextInput(attrs={'size': 20,}))
-  password2= forms.CharField(label='Confirm',widget=forms.PasswordInput)
+class RegisterForm(forms.Form):
+    username = forms.CharField(max_length=254,
+                               widget=forms.TextInput({
+                                   'class': 'form-control',
+                                   'placeholder': 'User name'}))
+    email = forms.EmailField(label='e-mail',widget=forms.TextInput({
+                                   'class': 'form-control',
+                                   'placeholder': 'e-mail'}))
+    password1 = forms.CharField(label='Password',
+                               widget=forms.PasswordInput({
+                                   'class': 'form-control',
+                                   'placeholder':'Password'}))
+    password2= forms.CharField(label='confirm',
+                               widget=forms.PasswordInput({
+                                   'class': 'form-control',
+                                   'placeholder':'Password'}))
 
 
 def home(request):
@@ -61,33 +72,11 @@ def about(request):
         }
     )
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserForm(request.POST)
-#
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             email = form.cleaned_data['email']
-#             password = form.cleaned_data['password']
-#             password2 = form.cleaned_data['password2']
-#         else:
-#             form = UserForm()
-#
-#         user=User.objects.create_user(username, email, password)
-#         user.save()
-#         newUser = auth.authenticate(username=username, password=password)
-#         if newUser is not None:
-#             auth.login(request, newUser)
-#             return HttpResponseRedirect("/")
-#     else:
-#         form= UserForm()
-#         return render(request, "app/register.html", {'form': form})
-#
-#     return render(request, 'app/register.html')
+
 def register(request):
     if request.method=='POST':
         errors=[]
-        form=UserForm(request.POST)
+        form=RegisterForm(request.POST)
 
         if not form.is_valid():
             return render(request, "app/register.html",{'form':form,'errors':errors})
@@ -110,7 +99,7 @@ def register(request):
             auth.login(request, newUser)
             return HttpResponseRedirect("/")
     else:
-        form =UserForm()
+        form =RegisterForm()
         return render(request, "app/register.html",{'form':form,'title':'注册','year':datetime.now().year})
 
     return render(request, "app/register.html")

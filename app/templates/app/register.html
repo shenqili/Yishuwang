@@ -2,58 +2,52 @@
 
 {% block content %}
 
-<h2>{{ title }}</h2>
+<h2>用户注册</h2>
 <div class="row">
     <div class="col-md-8">
-        <section id="RegisterForm">
+        <section>
             <form action="" method="post" class="form-horizontal">
                 {% csrf_token %}
+                <h4>register a new account.</h4>
+ 
                 <hr />
                 <div class="form-group">
-                    <label for="id_username" class="col-md-2 control-label">User name</label>
+                    <label for="id_username" class="col-md-2 control-label">用户名</label>
                     <div class="col-md-10">
-                       {{ form.username }}
+                        {{form.username}} {{form.username.errors}}                        
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="id_password" class="col-md-2 control-label">email</label>
+                    <label for="id_password" class="col-md-2 control-label">e-mail</label>
                     <div class="col-md-10">
-                        {{ form.email }}
+                        {{form.email}} {{form.email.errors}}                    
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="id_password1" class="col-md-2 control-label">Password</label>
+                    <label for="id_password" class="col-md-2 control-label">密码</label>
                     <div class="col-md-10">
-                       {{ form.password1 }}
+                        {{form.password1}} {{form.password1.errors}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="id_password" class="col-md-2 control-label">Confirm</label>
+                    <label for="id_password" class="col-md-2 control-label">确认密码</label>
                     <div class="col-md-10">
-                        {{ form.password2 }}
+                        {{form.password2}}  {{form.password2.errors}}
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                         <input type = 'submit' placeholder="submit" value="submit" >
+                        <input type = 'submit'  value="Submit" class="btn btn-default" /> 
                     </div>
                 </div>
-                {% if form.errors %}
-                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
-                {% endif %}
+                {% for items in errors %}
+                <p class="validation-summary-errors"> {{items}} </p>
+                {% endfor %}
             </form>
         </section>
     </div>
 </div>
-
-{% endblock %}
-
-
-{% block scripts %}
-
-    {% load staticfiles %}
-<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
 
 {% endblock %}
 

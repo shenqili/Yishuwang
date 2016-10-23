@@ -6,8 +6,11 @@ from datetime import datetime
 from django.conf.urls import url
 import django.contrib.auth.views
 
-import myauth.forms
-import myauth.views
+from django.conf import settings
+from django.conf.urls.static import static
+
+import app.forms
+import app.views
 
 # Uncomment the next lines to enable the admin:
 from django.conf.urls import include
@@ -16,15 +19,15 @@ admin.autodiscover()
 
 urlpatterns = [
     # Examples:
-    url(r'^$', myauth.views.home, name='home'),
-    url(r'^contact$', myauth.views.contact, name='contact'),
-    url(r'^about', myauth.views.about, name='about'),
-    url(r'^register', myauth.views.register, name='register'),
+    url(r'^$', app.views.home, name='home'),
+    url(r'^contact$', app.views.contact, name='contact'),
+    url(r'^about', app.views.about, name='about'),
+    url(r'^register$', app.views.register, name='register'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
-            'template_name': 'myauth/login.html',
-            'authentication_form': myauth.forms.BootstrapAuthenticationForm,
+            'template_name': 'app/login.html',
+            'authentication_form': app.forms.BootstrapAuthenticationForm,
             'extra_context':
             {
                 'title': 'Log in',
@@ -44,4 +47,6 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-]
+    url(r'^upload_book$',app.views.upload_book),
+    url(r'^user_book_detail$',app.views.user_book_detail),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

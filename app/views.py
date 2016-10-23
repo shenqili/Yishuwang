@@ -76,7 +76,7 @@ def about(request):
 def register(request):
     if request.method=='POST':
         errors=[]
-        form=registerForm(request.POST)
+        form=RegisterForm(request.POST)
 
         if not form.is_valid():
             return render(request, "app/register.html",{'form':form,'errors':errors})
@@ -99,7 +99,7 @@ def register(request):
             auth.login(request, newUser)
             return HttpResponseRedirect("/")
     else:
-        form =registerForm()
+        form =RegisterForm()
         return render(request, "app/register.html",{'form':form,'title':'注册','year':datetime.now().year})
 
     return render(request, "app/register.html")

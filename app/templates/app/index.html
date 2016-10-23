@@ -1,0 +1,23 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    <h1>易书网</h1>
+    {% if book_list_all %}
+        <ul>
+        {% for book in book_list_all %}
+            <li>书名：{{ book.name_book }}</li>
+            <li>年级：{{ book.grade_book }}</li>
+            <li>折扣：{{ book.discount_book }}</li>
+            <li>专业：{{ book.major_book }}</li>
+            <li>发布者：{{ book.master }}</li>
+            <li>发布者邮箱：{{ book.master.email }}</li>
+            <img src="/media/{{ book.photo_book}}" height="300" width="200"  />
+
+            <hr />  <!--想弄个分割线出来但是效果不太一样，可能是css的原因-->
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}
+
+

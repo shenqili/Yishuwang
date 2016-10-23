@@ -1,0 +1,51 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h4>发布旧书</h4>
+                <hr />
+                <div class="form-group">
+                    <label for="name_book" class="col-md-2 control-label">书名</label>
+                    <div class="col-md-10">
+                       {{ book_form.name_book }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="grade_book" class="col-md-2 control-label">年级</label>
+                    <div class="col-md-10">
+                        {{ book_form.grade_book }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="discount_book" class="col-md-2 control-label">折扣</label>
+                    <div class="col-md-10">
+                        {{ book_form.discount_book }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="major_book" class="col-md-2 control-label">专业</label>
+                    <div class="col-md-10">
+                        {{ book_form.major_book }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photo_book" class="col-md-2 control-label">封面</label>
+                    <div class="col-md-10">
+                        {{ book_form.photo_book }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                         <input type = 'submit' placeholder="submit" value="submit" >
+                    </div>
+                </div>
+                {% if book_form.errors %}
+                <p class="validation-summary-errors">请正确输入书名</p>
+                {% endif %}
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}

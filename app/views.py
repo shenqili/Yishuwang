@@ -137,33 +137,50 @@ class BookForm(forms.Form):
 
 
 def upload_book(request):
-    if request.method == 'POST':
-        book_form = BookForm(request.POST, request.FILES)
-        if book_form.is_valid():
-            name = book_form.cleaned_data['name_book']
-            grade = book_form.cleaned_data['grade_book']
-            discount = book_form.cleaned_data['discount_book']
-            major = book_form.cleaned_data['major_book']
-            photo =book_form.cleaned_data['photo_book']
-            # acquire courrent user
-            user = request.user
-            book = user.book_set.create(name_book=name, grade_book=grade, discount_book=discount, major_book=major,
-                                        photo_book=photo)
-            book.save()
-            return HttpResponseRedirect('/user_book_detail')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            book_form = BookForm(request.POST, request.FILES)
+            if book_form.is_valid():
+                name = book_form.cleaned_data['name_book']
+                grade = book_form.cleaned_data['grade_book']
+                discount = book_form.cleaned_data['discount_book']
+                major = book_form.cleaned_data['major_book']
+                photo =book_form.cleaned_data['photo_book']
+                # acquire courrent user
+                user = request.user
+                book = user.book_set.create(name_book=name, grade_book=grade, discount_book=discount, major_book=major,
+                                            photo_book=photo)
+                book.save()
+                return HttpResponseRedirect('/user_book_detail')
+            else:
+                book_form = BookForm()
+                return HttpResponseRedirect('/upload_book')
         else:
             book_form = BookForm()
-            return HttpResponseRedirect('/upload_book')
+            return render(request, "app/upload_book.html", {'book_form': book_form,'title':'发布旧书','year':datetime.now().year})
     else:
-        book_form = BookForm()
-        return render(request, "app/upload_book.html", {'book_form': book_form,'title':'发布旧书','year':datetime.now().year})
-
+        return HttpResponseRedirect('/login')
 
 def user_book_detail(request):
-    user = request.user
-    upoladed_book = user.book_set.all()
-    context = {'uploaded_book_list':upoladed_book,
-               'title': '我的书籍',
-               'year': datetime.now().year,
-               }
-    return render(request,'app/user_book_detail.html',context)
+    if request.user.is_authenticated:
+        user = request.user
+        upoladed_book = user.book_set.all()
+        context = {'uploaded_book_list':upoladed_book,
+                   'title': '我的书籍',
+                   'year': datetime.now().year,
+                   }
+        return render(request, 'app/user_book_detail.html', context)
+    else:
+        return HttpResponseRedirect('/login')
+
+#通过传递参数book_id 来达到删除书的目的
+def delete_book(request,book_id):
+    book_id = book_id
+    if request.user.is_authenticated:
+        user = request.user
+        book = user.book_set.filter(id=book_id)
+        book.delete()
+    else:
+        return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/user_book_detail')
+

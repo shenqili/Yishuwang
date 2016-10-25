@@ -3,11 +3,12 @@
 {% if uploaded_book_list %}
     <ul>
     {% for book in uploaded_book_list %}
-        <li>{{ book.name_book }}</li>
-        <li>{{ book.grade_book }}</li>
-        <li>{{ book.discount_book }}</li>
-        <li>{{ book.major_book }}</li>
+        <li>书名：{{ book.name_book }}</li>
+        <li>年级：{{ book.grade_book }}</li>
+        <li>折扣：{{ book.discount_book }}</li>
+        <li>专业：{{ book.major_book }}</li>
         <img src="/media/{{ book.photo_book }}  " height="300" width="200" />
+        <a href="/delete_book/{{ book.id}}" >删除此书</a>
         <hr />  <!--想弄个分割线出来但是效果不太一样，可能是css的原因-->
     {% endfor %}
     </ul>

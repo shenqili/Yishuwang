@@ -1,0 +1,55 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h2>{{ title }}</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            <form action="" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h4>你可以查看或修改您的信息。</h4>
+ 
+                <hr />
+                <div class="form-group">
+                    <label for="id_username" class="col-md-2 control-label">用户名</label>
+                    <div class="col-md-10">
+                        <font size="5" > {{ user.username }}</font>                      
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_email" class="col-md-2 control-label">e-mail</label>
+                    <div class="col-md-10">
+                        <input type="text", value={{ user.email }} name="email" />                  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_password" class="col-md-2 control-label">学校</label>
+                    <div class="col-md-10">
+                        <input type="text", value={{ user.userprofile.school }} name="school" /> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_password" class="col-md-2 control-label">个人描述</label>
+                    <div class="col-md-10">
+                        <input type="text", value={{ user.userprofile.description }} name="description" /> 
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type = 'submit'  value="保存" class="btn btn-default" /> 
+                        <a href="{% url 'home' %}" >取消</a>
+                    </div>
+                </div>
+                {% for items in errors %}
+                <p class="validation-summary-errors"> {{items}} </p>
+                {% endfor %}
+            </form>
+        </section>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

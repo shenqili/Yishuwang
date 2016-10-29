@@ -9,7 +9,10 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):  
     user = models.OneToOneField(User) 
     school = models.TextField(max_length=50,default='')
-    description = models.TextField(max_length=51200,default='')   
+    description = models.TextField(max_length=51200,default='') 
+    
+    def __str__(self):
+        return self.user.username 
   
 def create_user_profile(sender, instance, created, **kwargs):  
     if created:  

@@ -4,7 +4,7 @@ from app.models import book , UserProfile
 
   
 class UserProfileAdmin(admin.ModelAdmin):  
-    fields = ('user','description',)  
+    fields = ('user',‘school','description',)  
   
 admin.site.register(UserProfile, UserProfileAdmin)
 

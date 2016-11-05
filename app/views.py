@@ -16,11 +16,11 @@ from django.contrib import auth
 from django import forms
 
 class InfForm(forms.Form):
-    email = forms.EmailField(label='e-mail',widget=forms.TextInput({
-                                   'class': 'form-control',
-                                   'placeholder': 'e-mail'}))
-    school = forms.CharField(max_length=50)
-    description = forms.CharField(max_length=51200)
+     
+    school = forms.CharField(max_length=128, error_messages={'required':u'学校不能为空', 'invalid':u'学校输入有误'})
+    major = forms.CharField(max_length=128, error_messages={'required':u'专业不能为空', 'invalid':u'专业输入有误'})
+    description = forms.CharField( max_length=512, error_messages={'required':u'该项不能为空', 'invalid':u'该项输入有误'},required=False)
+    contact = forms.CharField(max_length=50, error_messages={'required':u'联系方式不能为空', 'invalid':u'联系方式输入有误'})
 
 
 class RegisterForm(forms.Form):
@@ -197,26 +197,37 @@ def delete_book(request,book_id):
         return HttpResponseRedirect('/login')
     return HttpResponseRedirect('/user_book_detail')
 
-def personal_inf(request):
+
+def public_inf(request, c_user):
     if request.user.is_authenticated:
+        if request.method == 'GET':
+            target_user = User.objects.filter(username = c_user)
+            if len(target_user)==1:
+                return render(request, "app/public_inf.html", {"target_user": target_user[0],})
+    return HttpResponseRedirect("/")
+
+def personal_inf(request,c_user):
+    origin= request.META.get('HTTP_REFERER', '/')
+    if request.user.is_authenticated and request.user.username == c_user:
         profile = request.user.userprofile
         if request.method=='POST': 
             form=InfForm(request.POST)
 
             if not form.is_valid():
                return render(request, "app/personal_inf.html",{'form':form,'title':'个人信息','year':datetime.now().year,})
-            email = form.cleaned_data['email']
             school = form.cleaned_data['school']
+            major = form.cleaned_data['major']
             description= form.cleaned_data['description']
+            contact = form.cleaned_data['contact']
         
-            profile.user.email = email
             profile.school = school
+            profile.major = major
             profile.description = description
+            profile.contact = contact
             profile.save()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect('/public_inf/'+str(request.user.username))
         else:
             form =InfForm()
             return render(request, "app/personal_inf.html",{'form':form,'title':'个人信息','year':datetime.now().year,})
-    return render(request, "app/personal_inf.html")
+    return HttpResponseRedirect("/")
         
-

@@ -121,6 +121,24 @@ class BookForm_1_dianyuan(forms.Form):
     discount_book = forms.ChoiceField(choices=discount_choices)
     photo_book = forms.FileField()
 
+
+class BookForm_2_dianyuan(forms.Form):
+    class_choices = (
+        ('大学物理（A类）（1）', '大学物理（A类）（1）'),
+('高等数学（A）（2）', '高等数学（A）（2）'),
+('概率统计', '概率统计'),
+('C++程序设计（A类）', 'C++程序设计（A类）'),
+('大学物理实验（1）', '大学物理实验（1）'),
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
 class BookForm_3_dianqi(forms.Form):
     class_choices = (
         ('大学物理（A类）（2）', '大学物理（A类）（2）'),
@@ -411,14 +429,321 @@ class BookForm_7_zidonghua(forms.Form):
     discount_book = forms.ChoiceField(choices=discount_choices)
     photo_book = forms.FileField()
 
+
+
+
+
+
+
+
+class BookForm_3_xinan(forms.Form):
+    class_choices = (
+        ('数据结构与算法','数据结构与算法'),
+        ('基本电路理论','基本电路理论'),
+        ('数字电子技术','数字电子技术'),
+        ('软件工程','软件工程'),
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_4_xinan(forms.Form):
+    class_choices = (
+        ('模拟电子技术','模拟电子技术'),
+('信号与系统','信号与系统'),
+('数据库原理','数据库原理'),
+('信息安全的数学基础（1）','信息安全的数学基础（1）'),
+('计算机组成与系统结构','计算机组成与系统结构'),
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+class BookForm_5_xinan(forms.Form):
+    class_choices=(('编译原理（C类）','编译原理（C类）'),
+('计算机通信网络(A类)','计算机通信网络(A类)'),
+('数字信号处理（E类）','数字信号处理（E类）'),
+('数字系统设计','数字系统设计'),
+('信息论与编码','信息论与编码'),
+('信息安全的数学基础（2)','信息安全的数学基础（2)'),)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+class BookForm_6_xinan(forms.Form):
+    class_choices=(('操作系统（B类)','操作系统（B类)'),
+('嵌入式系统原理与应用','嵌入式系统原理与应用'),
+('Windows安全原理与技术','Windows安全原理与技术'),)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+
+
+
+
+
+
+class BookForm_3_ruanyuan(forms.Form):
+    class_choices = (
+        ('计算机系统基础（1）','计算机系统基础（1）'),
+('算法原理','算法原理'),
+('电路系统综合','电路系统综合'),
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_4_ruanyuan(forms.Form):
+    class_choices = (
+       ('计算机系统基础（2）','计算机系统基础（2）'),
+('数据库原理与技术','数据库原理与技术'),
+('软件工程导论','软件工程导论'),
+('Web开发技术','Web开发技术'),
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+class BookForm_5_ruanyuan(forms.Form):
+    class_choices=(('计算机系统工程','计算机系统工程'),
+('软件测试','软件测试'),)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+class BookForm_6_ruanyuan(forms.Form):
+    class_choices=(('计算机体系结构','计算机体系结构'),
+('分布式系统','分布式系统'),)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+
+class BookForm_3_jisuanji(forms.Form):
+    class_choices = (
+        ('电路系统综合','电路系统综合'),
+('数据结构A','数据结构A')
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_4_jisuanji(forms.Form):
+    class_choices = (
+      ('操作系统（D类）','操作系统（D类）'),
+('算法与复杂性','算法与复杂性'),
+('计算机系统结构（A类)','计算机系统结构（A类)'),
+('计算机科学中的数学基础','计算机科学中的数学基础')
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+class BookForm_5_jisuanji(forms.Form):
+    class_choices=(('人工智能（B类）','人工智能（B类）'),
+('计算理论','计算理论'))
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+class BookForm_6_jisuanji(forms.Form):
+    class_choices=(('数据科学基础','数据科学基础'),)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+
+
+
+
+class BookForm_3_weidianzi(forms.Form):
+    class_choices=(
+('大学物理（A类）（2）','大学物理（A类）（2）'),
+('基本电路理论','基本电路理论'),
+('数字电子技术','数字电子技术'),
+('数理方法','数理方法'),
+('数据结构B','数据结构B'),
+)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_4_weidianzi(forms.Form):
+    class_choices=(('嵌入式系统原理与实验（A类）','嵌入式系统原理与实验（A类）'),
+('信号与系统（A类）','信号与系统（A类）'),
+('软件工程','软件工程'),
+('半导体物理与器件','半导体物理与器件'),
+('数字集成电路设计','数字集成电路设计'),)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+class BookForm_5_weidianzi(forms.Form):
+    class_choices=(
+('数字信号处理','数字信号处理'),
+('电磁场','数字信号处理'),
+('算法原理','数字信号处理'),
+('操作系统（E类）','操作系统（E类）'),
+('信息论基础','信息论基础'),
+('自动控制原理B','自动控制原理B'),
+('近代物理（电子类）','近代物理（电子类）'),
+('模拟集成电路设计','模拟集成电路设计'),
+('VLSI数字通信原理','VLSI数字通信原理'),
+)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_6_weidianzi(forms.Form):
+    class_choices=(
+('混合信号集成电路设计引论','混合信号集成电路设计引论'),
+('集成电路测试基础','集成电路测试基础'),
+('先进数字系统芯片设计','先进数字系统芯片设计'),
+('设计自动化引论','设计自动化引论'),
+)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
+
+class BookForm_7_weidianzi(forms.Form):
+    class_choices=(
+('射频集成电路设计引论','射频集成电路设计引论'),
+('多媒体原理与技术','多媒体原理与技术'),
+('光电原理与传感器应用','光电原理与传感器应用'),
+)
+
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
 def upload_book(request,book_grade,book_major):
     book_grade_dict={'1':'大一上','2':'大一下','3':'大二上','4':'大二下','5':'大三上','6':'大三下','7':'大四上'}
-    book_major_dict={'dianyuan':'电院','xinan':'信安','ruanyuan':'软院','dianqi':'电气','cekong':'测控','zidonghua':'自动化'}
-    book_form_dict ={'1dianyuan':BookForm_1_dianyuan,'3dianqi':BookForm_3_dianqi,'3cekong':BookForm_3_cekong,'3zidonghua':BookForm_3_zidonghua,
+    book_major_dict={'dianyuan':'电院大平台','xinan':'信安','ruanyuan':'软院','jisuanji':'计算机','dianqi':'电气','cekong':'测控','zidonghua':'自动化','weidianzi':'微电子'}
+    book_form_dict ={'1dianyuan':BookForm_1_dianyuan,'2dianyuan':BookForm_2_dianyuan,'3dianqi':BookForm_3_dianqi,'3cekong':BookForm_3_cekong,'3zidonghua':BookForm_3_zidonghua,
                      '4dianqi':BookForm_4_dianqi,'4cekong':BookForm_4_cekong,'4zidonghua':BookForm_4_zidonghua,
                      '5dianqi': BookForm_5_dianqi, '5cekong': BookForm_5_cekong, '5zidonghua': BookForm_5_zidonghua,
                      '6dianqi': BookForm_6_dianqi, '6cekong': BookForm_6_cekong, '6zidonghua': BookForm_6_zidonghua,
-                     '7dianqi': BookForm_7_dianqi, '7cekong': BookForm_6_cekong, '7zidonghua': BookForm_7_zidonghua
+                     '7dianqi': BookForm_7_dianqi, '7cekong': BookForm_6_cekong, '7zidonghua': BookForm_7_zidonghua,
+                     '3xinan':BookForm_3_xinan,'4xinan':BookForm_4_xinan,'5xinan':BookForm_5_xinan,'6xinan':BookForm_6_xinan,
+                    '3ruanyuan':BookForm_3_ruanyuan,'4ruanyuan':BookForm_4_ruanyuan,'5ruanyuan':BookForm_5_ruanyuan,'6ruanyuan':BookForm_6_ruanyuan,
+                     '3jisuanji':BookForm_3_jisuanji,'4jisuanji':BookForm_4_jisuanji,'5jisuanji':BookForm_5_jisuanji,'6jisuanji':BookForm_6_jisuanji,
+                     '3weidianzi':BookForm_3_weidianzi,'4weidianzi':BookForm_4_weidianzi,'5weidianzi':BookForm_5_weidianzi,'6weidianzi':BookForm_6_weidianzi,'7weidianzi':BookForm_7_weidianzi,
+                   
                     }
     book_form_dict_key = book_grade+book_major
     BookForm = book_form_dict[book_form_dict_key]

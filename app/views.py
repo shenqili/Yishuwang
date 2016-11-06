@@ -35,16 +35,37 @@ class RegisterForm(forms.Form):
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-    book_list_all = book.objects.all()
-    return render(
-        request,
-        'app/index.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-            'book_list_all':book_list_all,
-        }
-    )
+    if request.method == 'POST':
+        form = search_form(request.POST)
+        if form.is_valid():
+            book_name = form.cleaned_data['keyword']
+            book_list_all = book.objects.filter(name_book=book_name)
+            return render(
+                request,
+                'app/index.html',
+                {
+                    'title': 'Home Page',
+                    'year': datetime.now().year,
+                    'book_list_all': book_list_all,
+                    'form':form,
+                }
+            )
+        else:
+            form = search_form()
+            return HttpResponseRedirect('/')
+    else:
+        book_list_all = book.objects.all()
+        form = search_form()
+        return render(
+            request,
+            'app/index.html',
+            {
+                'title':'Home Page',
+                'year':datetime.now().year,
+                'book_list_all':book_list_all,
+                'form': form,
+            }
+        )
 
 def contact(request):
     """Renders the contact page."""
@@ -1020,4 +1041,5 @@ def delete_book(request,book_id):
         return HttpResponseRedirect('/login')
     return HttpResponseRedirect('/user_book_detail')
 
-
+class search_form(forms.Form):
+    keyword = forms.CharField(max_length=50)

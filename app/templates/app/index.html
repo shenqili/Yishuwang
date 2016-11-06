@@ -2,6 +2,21 @@
 
 {% block content %}
     <h1>易书网</h1>
+    <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="keyword" class="col-md-2 control-label">请输入课程名称</label>
+                    <div class="col-md-10">
+                        {{ form.keyword }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="hidden" name="next" value="/" />
+                        <input type="submit" value="搜索" class="btn btn-default" />
+                    </div>
+                </div>
+    </form>
     {% if book_list_all %}
         <ul>
         {% for book in book_list_all %}

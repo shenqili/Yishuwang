@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from app.models import book
 from django.template import RequestContext
 from django.contrib import auth
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django import forms
 class RegisterForm(forms.Form):
@@ -40,14 +41,23 @@ def home(request):
         if form.is_valid():
             book_name = form.cleaned_data['keyword']
             book_list_all = book.objects.filter(name_book=book_name)
+            panginator = Paginator(book_list_all, 2)
+            page = request.GET.get('page')
+            try:
+                books = panginator.page(page)
+            except PageNotAnInteger:
+                books = panginator.page(1)
+            except EmptyPage:
+                books = panginator.page(panginator.num_pages)
+            form = search_form()
             return render(
                 request,
                 'app/index.html',
                 {
                     'title': 'Home Page',
                     'year': datetime.now().year,
-                    'book_list_all': book_list_all,
-                    'form':form,
+                    'books': books,
+                    'form': form,
                 }
             )
         else:
@@ -55,6 +65,14 @@ def home(request):
             return HttpResponseRedirect('/')
     else:
         book_list_all = book.objects.all()
+        panginator = Paginator(book_list_all,2)
+        page = request.GET.get('page')
+        try:
+            books = panginator.page(page)
+        except PageNotAnInteger:
+            books = panginator.page(1)
+        except EmptyPage:
+            books = panginator.page(panginator.num_pages)
         form = search_form()
         return render(
             request,
@@ -62,7 +80,7 @@ def home(request):
             {
                 'title':'Home Page',
                 'year':datetime.now().year,
-                'book_list_all':book_list_all,
+                'books':books,
                 'form': form,
             }
         )
@@ -1043,3 +1061,6 @@ def delete_book(request,book_id):
 
 class search_form(forms.Form):
     keyword = forms.CharField(max_length=50)
+
+
+

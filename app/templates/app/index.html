@@ -17,9 +17,9 @@
                     </div>
                 </div>
     </form>
-    {% if book_list_all %}
+    {% if books %}
         <ul>
-        {% for book in book_list_all %}
+        {% for book in books %}
             <li>课程名称：{{ book.name_book }}</li>
             <li>年级：{{ book.grade_book }}</li>
             <li>折扣：{{ book.discount_book }}</li>
@@ -31,6 +31,21 @@
             <hr />  <!--想弄个分割线出来但是效果不太一样，可能是css的原因-->
         {% endfor %}
         </ul>
+        <div class="pagination">
+    <span class="step-links">
+        {% if books.has_previous %}
+            <a href="?page={{ books.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ books.number }} of {{ books.paginator.num_pages }}.
+        </span>
+
+        {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
     {% endif %}
 
 {% endblock %}

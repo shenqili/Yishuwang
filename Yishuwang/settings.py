@@ -51,7 +51,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Yishuwang.urls'
-AUTH_PROFILE_MODULE = 'app.UserProfile'
+AUTH_PROFILE_MODULE = 'myauth.UserProfile'
 LOGIN_REDIRECT_URL = r'/'
 
 TEMPLATES = [

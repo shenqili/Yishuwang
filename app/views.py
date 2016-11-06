@@ -504,7 +504,19 @@ class BookForm_6_xinan(forms.Form):
     discount_book = forms.ChoiceField(choices=discount_choices)
     photo_book = forms.FileField()
 
+class BookForm_7_xinan(forms.Form):
+    class_choices=(('Internet安全协议与分析','Internet安全协议与分析'),
+('现代密码学','现代密码学'),
+                   )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
 
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
 
 
 
@@ -633,7 +645,21 @@ class BookForm_6_jisuanji(forms.Form):
     discount_book = forms.ChoiceField(choices=discount_choices)
     photo_book = forms.FileField()
 
+class BookForm_7_jisuanji(forms.Form):
+    class_choices=(('数据挖掘','数据挖掘'),
+                   ('大数据处理','大数据处理'),
+                   ('智能语音技术', '智能语音技术'),
+                   ('多核计算与并行处理', '多核计算与并行处理'),
+                   ('并行与分布式程序设计', '并行与分布式程序设计'),)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
 
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
 
 
 
@@ -731,19 +757,213 @@ class BookForm_7_weidianzi(forms.Form):
     discount_book = forms.ChoiceField(choices=discount_choices)
     photo_book = forms.FileField()
 
+class BookForm_3_dianke(forms.Form):
+    class_choices=(
+('大学物理（A类）（2）','大学物理（A类）（2）'),
+('基本电路理论','基本电路理论'),
+('数字电子技术','数字电子技术'),
+('数理方法','数理方法'),
+('数据结构B','数据结构B'),
+    )
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_4_dianke(forms.Form):
+    class_choices=(
+('信号与系统（A类）','信号与系统（A类）'),
+('模拟电子技术','模拟电子技术'),
+('嵌入式系统原理与实验（A类）','嵌入式系统原理与实验（A类）'),
+('硬件描述语言与系统仿真','硬件描述语言与系统仿真'),
+('电子信息领域前沿技术（工程）探究','电子信息领域前沿技术（工程）探究'),
+('电磁场（A类）','电磁场（A类）'),
+)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_5_dianke(forms.Form):
+    class_choices=(
+('近代物理（电子类）','近代物理（电子类）'),
+('数字信号处理','数字信号处理'),
+('光纤通信概论','光纤通信概论'),
+('通信原理与实验','通信原理与实验'),
+('微波技术','微波技术'),
+('半导体物理与器件','半导体物理与器件'),
+('机器学习与视频内容理解','机器学习与视频内容理解'),
+('网络安全导论','网络安全导论'),
+('视觉定位与感知','视觉定位与感知'),
+('空时无线信道导论','空时无线信道导论'),
+('光电子器件','光电子器件'),
+('信息光子学','信息光子学'),
+('现代天线理论与技术','现代天线理论与技术'),
+)
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_6_dianke(forms.Form):
+    class_choices=(
+('光电子学基础','光电子学基础'),
+('通信基本电路与实验','通信基本电路与实验'),
+('计算通信理论','计算通信理论'),
+('激光原理与技术','激光原理与技术'),
+('多媒体通信系统与实现','多媒体通信系统与实现'),
+('信息论基础','信息论基础'),
+('无线通信新技术与实践','无线通信新技术与实践'),
+('无线组网技术','无线组网技术'),
+('新型光通信系统','新型光通信系统'),
+('大数据通信网络模型和算法','大数据通信网络模型和算法'),
+('机器学习','机器学习'),
+('网络安全管理技术','网络安全管理技术'),
+('现代感知技术','现代感知技术'),
+('微波遥感技术','微波遥感技术'),
+('射频电路设计','射频电路设计'),
+('电子设计自动化','电子设计自动化'),
+('光电子集成技术与工艺','光电子集成技术与工艺'),
+('光电显示技术','光电显示技术'),
+('光量子学基础','光量子学基础'),
+('传输与交换光子学','传输与交换光子学'),
+('智能天线与多维阵列','智能天线与多维阵列'),
+('超材料技术及多模传感器','超材料技术及多模传感器'),
+)
+
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_7_dianke(forms.Form):
+    class_choices=(
+('大数据处理','	大数据处理'),
+)
+
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_3_xingong(forms.Form):
+    class_choices=(
+('大学物理（A类）（2）','大学物理（A类）（2）'),
+('基本电路理论','基本电路理论'),
+('数字电子技术','数字电子技术'),
+('数理方法','数理方法'),
+('数据结构B','数据结构B'),
+)
+
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_4_xingong(forms.Form):
+        class_choices = (
+('信号与系统（A类）','信号与系统（A类）'),
+('模拟电子技术','模拟电子技术'),
+('嵌入式系统原理与实验（A类）','嵌入式系统原理与实验（A类）'),
+('硬件描述语言与系统仿真','硬件描述语言与系统仿真'),
+('电子信息领域前沿技术（工程）探究','电子信息领域前沿技术（工程）探究'),
+('电磁场（A类）','电磁场（A类）'),
+)
+
+        name_book = forms.ChoiceField(choices=class_choices)
+        discount_choices = (
+            ('1', '一折'),
+            ('2', '二折'),
+            ('3', '三折'),
+        )
+
+        discount_book = forms.ChoiceField(choices=discount_choices)
+        photo_book = forms.FileField()
+
+class BookForm_5_xingong(forms.Form):
+    class_choices=(
+('数字信号处理','数字信号处理'),
+('通信原理与实验','通信原理与实验'),
+('微波技术','微波技术'),
+('光纤通信概论','光纤通信概论'),
+('图像处理与通信','图像处理与通信'),
+('操作系统','操作系统'),
+('机器学习与视频内容理解','机器学习与视频内容理解'),
+)
+
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+class BookForm_6_xingong(forms.Form):
+    class_choices=(
+('通信基本电路与实验','通信基本电路与实验'),
+('无线通信原理与移动网络','无线通信原理与移动网络'),
+('信息论基础','信息论基础'),
+)
+
+
+    name_book = forms.ChoiceField(choices=class_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+
+    discount_book = forms.ChoiceField(choices=discount_choices)
+    photo_book = forms.FileField()
+
+
 def upload_book(request,book_grade,book_major):
     book_grade_dict={'1':'大一上','2':'大一下','3':'大二上','4':'大二下','5':'大三上','6':'大三下','7':'大四上'}
-    book_major_dict={'dianyuan':'电院大平台','xinan':'信安','ruanyuan':'软院','jisuanji':'计算机','dianqi':'电气','cekong':'测控','zidonghua':'自动化','weidianzi':'微电子'}
+    book_major_dict={'dianyuan':'电院大平台','xinan':'信安','ruanyuan':'软院','jisuanji':'计算机','dianqi':'电气','cekong':'测控','zidonghua':'自动化','weidianzi':'微电子','dianke':'电科','xingong':'信工'}
     book_form_dict ={'1dianyuan':BookForm_1_dianyuan,'2dianyuan':BookForm_2_dianyuan,'3dianqi':BookForm_3_dianqi,'3cekong':BookForm_3_cekong,'3zidonghua':BookForm_3_zidonghua,
                      '4dianqi':BookForm_4_dianqi,'4cekong':BookForm_4_cekong,'4zidonghua':BookForm_4_zidonghua,
                      '5dianqi': BookForm_5_dianqi, '5cekong': BookForm_5_cekong, '5zidonghua': BookForm_5_zidonghua,
                      '6dianqi': BookForm_6_dianqi, '6cekong': BookForm_6_cekong, '6zidonghua': BookForm_6_zidonghua,
                      '7dianqi': BookForm_7_dianqi, '7cekong': BookForm_6_cekong, '7zidonghua': BookForm_7_zidonghua,
-                     '3xinan':BookForm_3_xinan,'4xinan':BookForm_4_xinan,'5xinan':BookForm_5_xinan,'6xinan':BookForm_6_xinan,
+                     '3xinan':BookForm_3_xinan,'4xinan':BookForm_4_xinan,'5xinan':BookForm_5_xinan,'6xinan':BookForm_6_xinan,'7xinan':BookForm_7_xinan,
                     '3ruanyuan':BookForm_3_ruanyuan,'4ruanyuan':BookForm_4_ruanyuan,'5ruanyuan':BookForm_5_ruanyuan,'6ruanyuan':BookForm_6_ruanyuan,
-                     '3jisuanji':BookForm_3_jisuanji,'4jisuanji':BookForm_4_jisuanji,'5jisuanji':BookForm_5_jisuanji,'6jisuanji':BookForm_6_jisuanji,
+                     '3jisuanji':BookForm_3_jisuanji,'4jisuanji':BookForm_4_jisuanji,'5jisuanji':BookForm_5_jisuanji,'6jisuanji':BookForm_6_jisuanji,'7jisuanji':BookForm_7_jisuanji,
                      '3weidianzi':BookForm_3_weidianzi,'4weidianzi':BookForm_4_weidianzi,'5weidianzi':BookForm_5_weidianzi,'6weidianzi':BookForm_6_weidianzi,'7weidianzi':BookForm_7_weidianzi,
-                   
+                     '3dianke': BookForm_3_dianke,'4dianke': BookForm_4_dianke,'5dianke': BookForm_5_dianke,'6dianke': BookForm_6_dianke,'7dianke': BookForm_7_dianke,
+                     '3xingong': BookForm_3_xingong,'4xingong': BookForm_4_xingong, '5xingong': BookForm_5_xingong,'6xingong': BookForm_6_xingong
                     }
     book_form_dict_key = book_grade+book_major
     BookForm = book_form_dict[book_form_dict_key]

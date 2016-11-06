@@ -1,0 +1,63 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h2>{{ title }}</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h4>你可以查看或修改您的信息。</h4>
+ 
+                <hr />
+                <div class="form-group">
+                    <label for="id_username" class="col-md-2 control-label">用户名</label>
+                    <div class="col-md-10">
+                        <font size="5" > {{ user.username }}</font>                      
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_school" class="col-md-2 control-label">学校</label>
+                    <div class="col-md-10">
+                        <input name="school" value="{{ user.userprofile.school }}" class="form-control" />    {{ form.school.errors }}           
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_majar" class="col-md-2 control-label">专业</label>
+                    <div class="col-md-10">
+                        <input name="major" value="{{ user.userprofile.major }}" class="form-control" />      {{ form.major.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_description" class="col-md-2 control-label">个人签名</label>   
+                    <div class="col-md-10">
+                        {% if user.userprofile.description != '' %}
+                        <input name="description" value="{{ user.userprofile.description }}" class="form-control" />   
+                        {% else %}
+                        <input name="description" value="暂无" class="form-control" />  
+                        {% endif %}
+                        {{ form.description.errors }} 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>请务必选填至少一种联系方式</h5>
+                    <label for="id_contact" class="col-md-2 control-label">联系方式</label>   
+                    <div class="col-md-10">
+                        <input name="contact" value={{ user.userprofile.contact }} class="form-control" />   {{ form.contact.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type = 'submit'  value="保存" class="btn btn-default" /> 
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

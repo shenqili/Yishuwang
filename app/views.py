@@ -9,11 +9,20 @@ from django.template import RequestContext
 from datetime import datetime
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
-from app.models import book
+from app.models import book, UserProfile
 from django.template import RequestContext
 from django.contrib import auth
 
 from django import forms
+
+class InfForm(forms.Form):
+     
+    school = forms.CharField(max_length=128, error_messages={'required':u'学校不能为空', 'invalid':u'学校输入有误'})
+    major = forms.CharField(max_length=128, error_messages={'required':u'专业不能为空', 'invalid':u'专业输入有误'})
+    description = forms.CharField( max_length=512, error_messages={'required':u'该项不能为空', 'invalid':u'该项输入有误'},required=False)
+    contact = forms.CharField(max_length=50, error_messages={'required':u'联系方式不能为空', 'invalid':u'联系方式输入有误'})
+
+
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length=254,
                                widget=forms.TextInput({
@@ -30,6 +39,37 @@ class RegisterForm(forms.Form):
                                widget=forms.PasswordInput({
                                    'class': 'form-control',
                                    'placeholder':'Password'}))
+
+
+class BookForm(forms.Form):
+    name_book = forms.CharField(max_length=50)
+    #年级的下拉框
+    grade_choices = (
+        ('大一上', '大一上'),
+        ('大一下', '大一下'),
+        ('大二上', '大二上'),
+        ('大二下', '大二下'),
+        ('大三上', '大三上'),
+        ('大三下', '大三下'),
+        ('大四上', '大四上'),
+        ('大四下', '大四下'),
+    )
+    grade_book = forms.ChoiceField(choices=grade_choices)
+    discount_choices =(
+        ('1', '一折'),
+        ('2', '二折'),
+        ('3', '三折'),
+    )
+    discount_book = forms.ChoiceField(choices=discount_choices)
+
+    major_choice = (
+        ('信息安全', '信息安全'),
+        ('软件工程', '软件工程'),
+        ('计算机', '计算机'),
+    )
+
+    major_book = forms.ChoiceField(choices=major_choice)
+    photo_book = forms.FileField()
 
 
 def home(request):
@@ -105,35 +145,6 @@ def register(request):
     return render(request, "app/register.html")
 
 
-class BookForm(forms.Form):
-    name_book = forms.CharField(max_length=50)
-    #年级的下拉框
-    grade_choices = (
-        ('大一上', '大一上'),
-        ('大一下', '大一下'),
-        ('大二上', '大二上'),
-        ('大二下', '大二下'),
-        ('大三上', '大三上'),
-        ('大三下', '大三下'),
-        ('大四上', '大四上'),
-        ('大四下', '大四下'),
-    )
-    grade_book = forms.ChoiceField(choices=grade_choices)
-    discount_choices =(
-        ('1', '一折'),
-        ('2', '二折'),
-        ('3', '三折'),
-    )
-    discount_book = forms.ChoiceField(choices=discount_choices)
-
-    major_choice = (
-        ('信息安全', '信息安全'),
-        ('软件工程', '软件工程'),
-        ('计算机', '计算机'),
-    )
-
-    major_book = forms.ChoiceField(choices=major_choice)
-    photo_book = forms.FileField()
 
 
 def upload_book(request):
@@ -161,6 +172,7 @@ def upload_book(request):
     else:
         return HttpResponseRedirect('/login')
 
+
 def user_book_detail(request):
     if request.user.is_authenticated:
         user = request.user
@@ -173,6 +185,7 @@ def user_book_detail(request):
     else:
         return HttpResponseRedirect('/login')
 
+
 #通过传递参数book_id 来达到删除书的目的
 def delete_book(request,book_id):
     book_id = book_id
@@ -184,3 +197,37 @@ def delete_book(request,book_id):
         return HttpResponseRedirect('/login')
     return HttpResponseRedirect('/user_book_detail')
 
+
+def public_inf(request, c_user):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            target_user = User.objects.filter(username = c_user)
+            if len(target_user)==1:
+                return render(request, "app/public_inf.html", {"target_user": target_user[0],})
+    return HttpResponseRedirect("/")
+
+def personal_inf(request,c_user):
+    origin= request.META.get('HTTP_REFERER', '/')
+    if request.user.is_authenticated and request.user.username == c_user:
+        profile = request.user.userprofile
+        if request.method=='POST': 
+            form=InfForm(request.POST)
+
+            if not form.is_valid():
+               return render(request, "app/personal_inf.html",{'form':form,'title':'个人信息','year':datetime.now().year,})
+            school = form.cleaned_data['school']
+            major = form.cleaned_data['major']
+            description= form.cleaned_data['description']
+            contact = form.cleaned_data['contact']
+        
+            profile.school = school
+            profile.major = major
+            profile.description = description
+            profile.contact = contact
+            profile.save()
+            return HttpResponseRedirect('/public_inf/'+str(request.user.username))
+        else:
+            form =InfForm()
+            return render(request, "app/personal_inf.html",{'form':form,'title':'个人信息','year':datetime.now().year,})
+    return HttpResponseRedirect("/")
+        

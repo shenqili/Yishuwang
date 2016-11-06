@@ -49,7 +49,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^upload_book$',app.views.upload_book),
     url(r'^user_book_detail$',app.views.user_book_detail),
-    url(r'^delete_book/(?P<book_id>\d+)',app.views.delete_book)
+    url(r'^delete_book/(?P<book_id>\d+)',app.views.delete_book),
     url(r'^personal_inf/(?P<c_user>\w+)$',app.views.personal_inf, name='personalinf'),
     url(r'^public_inf/(?P<c_user>\w+)$',app.views.public_inf, name='publicinf'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

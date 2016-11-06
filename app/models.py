@@ -7,14 +7,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 class UserProfile(models.Model):  
-    user = models.OneToOneField(User)
-    school = models.CharField(max_length=51200,default='暂无')
-    major = models.CharField(max_length=128, default='暂无')
-    description = models.CharField(max_length=128, default='暂无',blank=True)  
-    contact = models.CharField(max_length=50, default='暂无')
-    
-    def __str__(self):
-        return self.user.username 
+    user = models.OneToOneField(User)  
+    description = models.TextField(max_length=51200)   
   
 def create_user_profile(sender, instance, created, **kwargs):  
     if created:  

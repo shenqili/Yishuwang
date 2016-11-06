@@ -1,12 +1,11 @@
-﻿
 {% if user.is_authenticated %}
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
     {% csrf_token %}
     <ul class="nav navbar-nav navbar-right">
         <li><span class="navbar-brand">您好 {{ user.username }}!</span></li>
-        <li><a href="upload_book"> 发布旧书</a></li>
-        <li><a href="user_book_detail" >查看我的书籍</a></li>
-        <li><a href="{% url 'publicinf' user.username %}" >个人信息</a></li>
+        
+        <li><a href="/upload_book_choice"> 发布旧书</a></li>
+        <li><a href="/user_book_detail" >查看我的书籍</a></li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
     </ul>
 

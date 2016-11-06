@@ -130,6 +130,18 @@ def register(request):
         if len(filterResult)>0:
            errors.append("用户名已存在")
            return render(request, "app/register.html",{'form':form,'errors':errors})
+
+        if (len(username)<4 or len(username)>30):
+            errors.append("用户名长度不符合要求")
+            return render(request, "app/register.html", {'form': form, 'errors': errors})
+
+        listsym=['!','@','#','$','%','^','&','*','(',')','-','+','=',',','.',';',':','[',']','{','}','|']
+        for i in range(len(listsym)):
+            if (listsym[i] in username):
+                errors.append("用户名包含特殊字符")
+                return render(request, "app/register.html", {'form': form, 'errors': errors})
+                break
+            
         user = User.objects.create_user(username,email,password1)
         user.save()
         #登录前需要先验证
@@ -1061,6 +1073,3 @@ def delete_book(request,book_id):
 
 class search_form(forms.Form):
     keyword = forms.CharField(max_length=50)
-
-
-

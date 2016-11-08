@@ -1,7 +1,7 @@
 """
 Definition of views.
 """
-
+import os
 from django.shortcuts import render
 from django.http import HttpRequest , HttpResponse
 from django.http import HttpResponseRedirect
@@ -1071,8 +1071,11 @@ def delete_book(request,book_id):
     book_id = book_id
     if request.user.is_authenticated:
         user = request.user
-        book = user.book_set.filter(id=book_id)
+        book = user.book_set.get(id=book_id)
+        current_path = os.path.abspath('.')
+        path =current_path+'/media/'+str(book.photo_book)
         book.delete()
+        os.remove(path)
     else:
         return HttpResponseRedirect('/login')
     return HttpResponseRedirect('/user_book_detail')

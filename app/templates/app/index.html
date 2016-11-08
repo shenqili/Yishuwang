@@ -34,7 +34,7 @@
         <div class="pagination">
     <span class="step-links">
         {% if books.has_previous %}
-            <a href="?page={{ books.previous_page_number }}">previous</a>
+            <a href="?page={{ books.previous_page_number }}">上一页</a>
         {% endif %}
 
         <span class="current">
@@ -42,7 +42,7 @@
         </span>
 
         {% if books.has_next %}
-            <a href="?page={{ books.next_page_number }}">next</a>
+            <a href="?page={{ books.next_page_number }}">下一页</a>
         {% endif %}
     </span>
 </div>

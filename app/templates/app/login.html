@@ -1,3 +1,4 @@
+
 {% extends "app/layout.html" %}
 
 {% block content %}
@@ -28,6 +29,12 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
+                <tr>
+                    <td>
+                        <a href="accounts/password/reset/">忘记密码</a>
+                        <input type="hidden" name="next" value="{{next}}">
+                    </td>
+                </tr>
                 {% if form.errors %}
                 <p class="validation-summary-errors">Please enter a correct user name and password.</p>
                 {% endif %}

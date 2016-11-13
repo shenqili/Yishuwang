@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -72,6 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Yishuwang.wsgi.application'
+
 
 
 # Database
@@ -127,3 +129,16 @@ STATIC_URL = '/static/'
 #media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace("\\", "/")
 MEDIA_URL = '/media/'
+
+# 指定本应用所在服务器的主机名称。
+SITE_HOST = '127.0.0.1:8000'
+# 指定电子邮件发件服务器地址，这里使用sjtu邮箱的发件服务器地址。
+EMAIL_HOST = 'smtp.sjtu.edu.cn'
+# 指定电子邮件发件服务器所使用的端口号，不填写表示使用缺省的端口号25。
+EMAIL_PORT = ''
+# 指定登录电子邮箱所使用的用户名，可根据实际情况填写。
+EMAIL_HOST_USER = '******'
+# 指定登录163 电子邮箱所使用的用户密码，读者可根据实际情况填写。
+EMAIL_HOST_PASSWORD = '******'
+# 指定电子邮件发件人信息。其中的电子邮件地址填写读者自己的电子邮箱地址。
+DEFAULT_FROM_EMAIL = 'password reset<******@sjtu.edu.cn>'

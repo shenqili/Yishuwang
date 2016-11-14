@@ -54,8 +54,8 @@ urlpatterns = [
     url(r'^personal_inf/(?P<c_user>\w+)$',app.views.personal_inf, name='personalinf'),
     url(r'^public_inf/(?P<c_user>\w+)$',app.views.public_inf, name='publicinf'),
     
-    url(r'^login/accounts/password/reset/', password_reset, { 'template_name' : 'registration/password_reset_form.html'}, name='password_reset'),
-    url(r'^login/accounts/password/reset/done/', password_reset_done, { 'template_name' : 'registration/password_reset_done.html'}, name='password_reset_done'),
+    url(r'^login/accounts/password/reset/', django.contrib.auth.views.password_reset, { 'template_name' : 'registration/password_reset_form.html'}, name='password_reset'),
+    url(r'^login/accounts/password/reset/done/', django.contrib.auth.views.password_reset_done, { 'template_name' : 'registration/password_reset_done.html'}, name='password_reset_done'),
 
   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

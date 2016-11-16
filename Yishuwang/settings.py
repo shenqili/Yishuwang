@@ -130,6 +130,30 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace("\\", "/")
 MEDIA_URL = '/media/'
 
+
+#  ---------------------------------------------------------
+#  Email
+USERS_REGISTRATION_OPEN = True
+ 
+USERS_VERIFY_EMAIL = True
+ 
+USERS_AUTO_LOGIN_ON_ACTIVATION = True
+ 
+USERS_EMAIL_CONFIRMATION_TIMEOUT_DAYS = 3
+ 
+# Specifies minimum length for passwords:
+USERS_PASSWORD_MIN_LENGTH = 5
+ 
+# Specifies maximum length for passwords:
+USERS_PASSWORD_MAX_LENGTH = None
+ 
+# the complexity validator, checks the password strength
+USERS_CHECK_PASSWORD_COMPLEXITY = True
+ 
+USERS_SPAM_PROTECTION = False  # important!
+ 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # 指定本应用所在服务器的主机名称。
 SITE_HOST = '127.0.0.1:8000'
 # 指定电子邮件发件服务器地址，这里使用sjtu邮箱的发件服务器地址。

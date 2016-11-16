@@ -27,7 +27,7 @@
                     <div class="col-md-offset-2 col-md-10">
                         <input type="hidden" name="next" value="/" />
                         <input type="submit" value="Log in" class="btn btn-default" />
-                        <a href="accounts/password/reset/"><input type="button" class="btn btn-default" value="忘记密码"/></a>
+                        <a href="{% url 'password_reset' %}"><input type="button" class="btn btn-default" value="忘记密码"/></a>
                         <input type="hidden" name="next" value="{{next}}"> 
                     </div>
                 </div>

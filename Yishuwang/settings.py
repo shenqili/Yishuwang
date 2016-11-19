@@ -142,10 +142,10 @@ USERS_AUTO_LOGIN_ON_ACTIVATION = True
 USERS_EMAIL_CONFIRMATION_TIMEOUT_DAYS = 3
  
 # Specifies minimum length for passwords:
-USERS_PASSWORD_MIN_LENGTH = 5
+USERS_PASSWORD_MIN_LENGTH = 6
  
 # Specifies maximum length for passwords:
-USERS_PASSWORD_MAX_LENGTH = None
+USERS_PASSWORD_MAX_LENGTH = 30
  
 # the complexity validator, checks the password strength
 USERS_CHECK_PASSWORD_COMPLEXITY = True
@@ -155,14 +155,14 @@ USERS_SPAM_PROTECTION = False  # important!
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # 指定本应用所在服务器的主机名称。
-SITE_HOST = '127.0.0.1:8000'
+SITE_HOST = '127.0.0.1'
 # 指定电子邮件发件服务器地址，这里使用sjtu邮箱的发件服务器地址。
-EMAIL_HOST = 'smtp.sjtu.edu.cn'
+EMAIL_HOST = 'smtp.163.cn'
 # 指定电子邮件发件服务器所使用的端口号，不填写表示使用缺省的端口号25。
-EMAIL_PORT = ''
+EMAIL_PORT = '25'
 # 指定登录电子邮箱所使用的用户名，可根据实际情况填写。
-EMAIL_HOST_USER = '******'
+EMAIL_HOST_USER = '15821861052@163.com'
 # 指定登录163 电子邮箱所使用的用户密码，读者可根据实际情况填写。
-EMAIL_HOST_PASSWORD = '******'
+EMAIL_HOST_PASSWORD = 'fszqz12345'
 # 指定电子邮件发件人信息。其中的电子邮件地址填写读者自己的电子邮箱地址。
-DEFAULT_FROM_EMAIL = 'password reset<******@sjtu.edu.cn>'
+DEFAULT_FROM_EMAIL = 'password reset<15821861052@163.com>'

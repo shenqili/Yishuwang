@@ -7,4 +7,4 @@
 
 [易书网](http://yishu.prowu.cn)
 
-http://yihsu.prowu.cn
+http://yishu.prowu.cn

@@ -132,6 +132,10 @@ def register(request):
         if password1!=password2:
             errors.append("两次输入的密码不一致!")
             return render(request, "app/register.html",{'form':form,'errors':errors})
+        filterResult=User.objects.filter(email=email)
+        if len(filterResult)>0:
+           errors.append("邮箱已存在")
+           return render(request, "app/register.html",{'form':form,'errors':errors})
         filterResult=User.objects.filter(username=username)
         if len(filterResult)>0:
            errors.append("用户名已存在")

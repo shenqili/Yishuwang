@@ -54,8 +54,36 @@ urlpatterns = [
     url(r'^personal_inf/(?P<c_user>\w+)$',app.views.personal_inf, name='personalinf'),
     url(r'^public_inf/(?P<c_user>\w+)$',app.views.public_inf, name='publicinf'),
     
-    url(r'^login/accounts/password/reset/', password_reset, { 'template_name' : 'registration/password_reset_form.html'}, name='password_reset'),
-    url(r'^login/accounts/password/reset/done/', password_reset_done, { 'template_name' : 'registration/password_reset_done.html'}, name='password_reset_done'),
+    url(r'^password_change/$', django.contrib.auth.views.password_change,
+        {
+            'template_name': 'registration/password_change_form.html',
+            'post_change_redirect': 'password_change_done'
+        },
+        name='password_change'),
+    url(r'^password_change/done/$', django.contrib.auth.views.password_change_done,
+        {'template_name': 'registration/password_change_done.html'},
+        name='password_change_done'),
+    url(r'^password_reset/$', django.contrib.auth.views.password_reset,
+        {
+            'template_name': 'registration/password_reset_form.html',
+            'email_template_name': 'registration/password_reset_email.html',
+            'subject_template_name': 'registration/password_reset_subject.html',
+            'post_reset_redirect': 'password_reset_done'
+        },
+        name='password_reset'),
+    url(r'^password_reset/done/$', django.contrib.auth.views.password_reset_done,
+        {'template_name': 'registration/password_reset_done.html'},
+        name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        django.contrib.auth.views.password_reset_confirm,
+        {
+            'template_name': 'registration/password_reset_confirm.html',
+            'post_reset_redirect': 'password_reset_complete'
+        },
+        name='password_reset_confirm'),
+    url(r'^reset/done/$', django.contrib.auth.views.password_reset_complete,
+        {'template_name': 'registration/password_reset_complete.html'},
+        name='password_reset_complete'),
 
   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

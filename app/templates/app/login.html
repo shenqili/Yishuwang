@@ -26,15 +26,12 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="hidden" name="next" value="/" />
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <input type="submit" value="登录" class="btn btn-default" />
+                        <a href="{% url 'password_reset' %}"><input type="button" class="btn btn-default" value="忘记密码"/></a>
+                        <input type="hidden" name="next" value="{{next}}"> 
                     </div>
                 </div>
-                <tr>
-                    <td>
-                        <a href="accounts/password/reset/">忘记密码</a>
-                        <input type="hidden" name="next" value="{{next}}">
-                    </td>
-                </tr>
+                
                 {% if form.errors %}
                 <p class="validation-summary-errors">Please enter a correct user name and password.</p>
                 {% endif %}

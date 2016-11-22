@@ -1,5 +1,6 @@
 {% extends "app/layout.html" %}
 {% block content %}
+    <h1>下面是发布的书籍</h1>
 {% if uploaded_book_list %}
     <ul>
     {% for book in uploaded_book_list %}
@@ -14,6 +15,19 @@
     </ul>
 {% else %}
     <p>你还没有发布旧书</p>
+{% endif %}
+
+
+    <h1>下面是预约的书籍</h1>
+{% if need_book_list %}
+    <ul>
+    {% for book in need_book_list %}
+        <li>书名：{{ book.need_book_name }}</li>
+        <a href="/delete_need_book/{{ book.id}}" >取消预约</a>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>你还没有预约旧书</p>
 {% endif %}
 
 {% endblock %}

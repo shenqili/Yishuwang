@@ -31,3 +31,9 @@ class book(models.Model):
 
     def __str__(self):
         return self.name_book
+
+class NeedBook(models.Model):
+    master = models.ForeignKey(User, on_delete=models.CASCADE)
+    need_book_name = models.CharField(max_length=30)
+    def __str__(self):
+        return self.need_book_name

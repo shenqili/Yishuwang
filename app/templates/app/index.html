@@ -27,6 +27,7 @@
             <li>发布者：{{ book.master }}</li>
             <li>发布者邮箱：{{ book.master.email }}</li>
             <img src="/media/{{ book.photo_book}}" height="300" width="200"  />
+            <a href="/{{book.id}}">详情</a>
 
             <hr />  <!--想弄个分割线出来但是效果不太一样，可能是css的原因-->
         {% endfor %}

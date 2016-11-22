@@ -9,10 +9,11 @@ from django.template import RequestContext
 from datetime import datetime
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
-from app.models import book
+from app.models import book ,NeedBook
 from django.template import RequestContext
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.mail import send_mail
 
 from django import forms
 class RegisterForm(forms.Form):
@@ -1042,6 +1043,8 @@ def upload_book(request,book_grade,book_major):
                 book = user.book_set.create(name_book=name, grade_book=grade, discount_book=discount, major_book=major,
                                             photo_book=photo)
                 book.save()
+                #发送邮件
+                need_book_send_eamil(name , book.id)
                 return HttpResponseRedirect('/user_book_detail')
             else:
                 book_form = BookForm()
@@ -1051,6 +1054,23 @@ def upload_book(request,book_grade,book_major):
             return render(request, "app/upload_book.html", {'book_form': book_form,'title':'发布旧书','year':datetime.now().year,'grade':book_grade_dict[book_grade],'major':book_major_dict[book_major]})
     else:
         return HttpResponseRedirect('/login')
+
+
+def need_book_send_eamil(book_name,id):
+    book_list = NeedBook.objects.filter(need_book_name = book_name)
+    if book_list:
+        needBook= book_list[0]
+        name = needBook.need_book_name
+        user = needBook.master
+        email = user.email
+        needBook.delete()
+        id = str(id)
+
+        message = str(user) + "发布了你预约的" +name +"这是这本书的详情请及时查看"+"http://yishu.prowu.cn/"+id
+        send_mail('易书网', message, 'yishuwang2016@163.com',
+            [email],fail_silently=False, )
+
+
 
 def upload_book_choice(request):
     if request.user.is_authenticated:
@@ -1062,7 +1082,10 @@ def user_book_detail(request):
     if request.user.is_authenticated:
         user = request.user
         upoladed_book = user.book_set.all()
+        # modles里面类的名称要变成小写NeedBook->needbook
+        need_book = user.needbook_set.all()
         context = {'uploaded_book_list':upoladed_book,
+                   'need_book_list': need_book,
                    'title': '我的书籍',
                    'year': datetime.now().year,
                    }
@@ -1119,3 +1142,54 @@ def personal_inf(request,c_user):
             form =InfForm()
             return render(request, "app/personal_inf.html",{'form':form,'title':'个人信息','year':datetime.now().year,})
     return HttpResponseRedirect("/")
+
+
+
+def delete_need_book(request,book_id):
+    book_id = book_id
+    if request.user.is_authenticated:
+        user = request.user
+        book = user.needbook_set.filter(id=book_id)
+        book.delete()
+    else:
+        return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/user_book_detail')
+
+class NeedBookForm(forms.Form):
+    need_book_name = forms.CharField(max_length=50)
+
+#目前有个小bug，可能会有预约两次的情况出现
+def need_book(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            need_book_form = NeedBookForm(request.POST)
+            if need_book_form.is_valid():
+                name = need_book_form.cleaned_data['need_book_name']
+                # acquire courrent user
+                user = request.user
+                need_book = NeedBook(master=user,need_book_name=name)
+                need_book.save()
+                return HttpResponseRedirect('/user_book_detail')
+            else:
+                need_book_form = NeedBookForm()
+                return HttpResponseRedirect('/need_book')
+        else:
+            need_book_form = NeedBookForm()
+            return render(request, "app/need_book.html", {'book_form': need_book_form,'title':'预约书','year':datetime.now().year})
+    else:
+        return HttpResponseRedirect('/login')
+
+
+def book_detail(request,book_id):
+    #返回的是一个数组如果不加[0]显示不出来
+    Book= book.objects.filter(id=book_id)[0]
+    return render(
+        request,
+        'app/book_detail.html',
+        {
+            'title':'书籍详情',
+            'year':datetime.now().year,
+            'Book':Book,
+        }
+    )
+

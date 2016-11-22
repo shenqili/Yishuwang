@@ -84,6 +84,9 @@ urlpatterns = [
     url(r'^reset/done/$', django.contrib.auth.views.password_reset_complete,
         {'template_name': 'registration/password_reset_complete.html'},
         name='password_reset_complete'),
+    url(r'^need_book$',app.views.need_book),
+    url(r'^delete_need_book/(?P<book_id>\d+)',app.views.delete_need_book),
+    url(r'(?P<book_id>\d+)',app.views.book_detail),
 
   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

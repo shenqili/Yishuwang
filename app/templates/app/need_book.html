@@ -1,0 +1,25 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h4>填写你想买但是没有人发布或者发布的已经被买光了，如果后续有人发布你想要的书的话，我们会邮件通知你</h4>
+                <hr />
+                <div class="form-group">
+                    <label for="need_book_name" class="col-md-2 control-label">书名</label>
+                    <div class="col-md-10">
+                       {{ book_form.need_book_name }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                         <input type = 'submit' placeholder="submit" value="submit" >
+                    </div>
+                {% if book_form.errors %}
+                <p class="validation-summary-errors">请正确输入书名</p>
+                {% endif %}
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}

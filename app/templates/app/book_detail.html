@@ -1,0 +1,13 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h1>书籍详情</h1>
+    <ul>
+        <li>书名：{{ Book.name_book }}</li>
+        <li>年级：{{ Book.grade_book }}</li>
+        <li>折扣：{{ Book.discount_book }}</li>
+        <li>专业：{{ Book.major_book }}</li>
+        <li>发布者：{{ Book.master }}</li>
+        <li>发布者邮箱：{{ Book.master.email }}</li>
+        <img src="/media/{{ Book.photo_book }}  " height="300" width="200" />
+    </ul>
+{% endblock %}

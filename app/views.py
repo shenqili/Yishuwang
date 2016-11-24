@@ -146,7 +146,7 @@ def register(request):
             errors.append("用户名长度不符合要求")
             return render(request, "app/register.html", {'form': form, 'errors': errors})
 
-        listsym=['!','@','#','$','%','^','&','*','(',')','-','+','=',',','.',';',':','[',']','{','}','|']
+        listsym=['!','@','#','$','%','^','&','*','(',')','-','+','=',',','.',';',':','[',']','{','}','|',' ']
         for i in range(len(listsym)):
             if (listsym[i] in username):
                 errors.append("用户名包含特殊字符")

@@ -47,8 +47,8 @@ def home(request):
         form = search_form(request.POST)
         if form.is_valid():
             book_name = form.cleaned_data['keyword']
-            book_list_all = book.objects.filter(name_book=book_name)
-            panginator = Paginator(book_list_all, 2)
+            book_list_all = book.objects.filter(name_book__contains=book_name)
+            panginator = Paginator(book_list_all, 200)
             page = request.GET.get('page')
             try:
                 books = panginator.page(page)
@@ -71,7 +71,7 @@ def home(request):
             form = search_form()
             return HttpResponseRedirect('/')
     else:
-        book_list_all = book.objects.all()
+        book_list_all = book.objects.order_by('id').reverse()
         panginator = Paginator(book_list_all,2)
         page = request.GET.get('page')
         try:
@@ -99,8 +99,8 @@ def contact(request):
         request,
         'app/contact.html',
         {
-            'title':'Contact',
-            'message':'Your contact page.',
+            'title':'联系我们',
+            'message':'在使用过程中如果遇到一些问题请及时反馈给我们，也欢迎提出你的意见和建议',
             'year':datetime.now().year,
         }
     )
@@ -112,8 +112,8 @@ def about(request):
         request,
         'app/about.html',
         {
-            'title':'About',
-            'message':'Your application description page.',
+            'title':'关于',
+            'message':'易书网使用说明',
             'year':datetime.now().year,
         }
     )
@@ -1181,15 +1181,16 @@ def need_book(request):
 
 
 def book_detail(request,book_id):
-    #返回的是一个数组如果不加[0]显示不出来
-    Book= book.objects.filter(id=book_id)[0]
+    #filter return quseryset
+    #get return the book object
+    BOOK= book.objects.filter(id=book_id)
     return render(
         request,
         'app/book_detail.html',
         {
             'title':'书籍详情',
             'year':datetime.now().year,
-            'Book':Book,
+            'book':BOOK,
         }
     )
 

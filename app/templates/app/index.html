@@ -24,7 +24,7 @@
             <li>年级：{{ book.grade_book }}</li>
             <li>折扣：{{ book.discount_book }}</li>
             <li>专业：{{ book.major_book }}</li>
-            <li>发布者：{{ book.master }}</li>
+            <li>发布者：<a href="{% url 'publicinf' book.master %}" >{{ book.master }}</a> </li>
             <li>发布者邮箱：{{ book.master.email }}</li>
             <img src="/media/{{ book.photo_book}}" height="300" width="200"  />
             <a href="/{{book.id}}">详情</a>

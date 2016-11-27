@@ -119,52 +119,45 @@ def about(request):
     )
 
 
-def register(request):
-    if request.method=='POST':
-        errors=[]
-        form=RegisterForm(request.POST)
+def register(request):#新的register，简化了代码
+        if request.method=='POST':
+            errors=[]
+            form=request.POST
 
-        if not form.is_valid():
-            return render(request, "app/register.html",{'form':form,'errors':errors})
-        username = form.cleaned_data['username']
-        email = form.cleaned_data['email']
-        password1 = form.cleaned_data['password1']
-        password2= form.cleaned_data['password2']
-        if password1!=password2:
-            errors.append("两次输入的密码不一致!")
-            return render(request, "app/register.html",{'form':form,'errors':errors})
-        filterResult=User.objects.filter(email=email)
-        if len(filterResult)>0:
-           errors.append("邮箱已存在")
-           return render(request, "app/register.html",{'form':form,'errors':errors})
-        filterResult=User.objects.filter(username=username)
-        if len(filterResult)>0:
-           errors.append("用户名已存在")
-           return render(request, "app/register.html",{'form':form,'errors':errors})
+            try:
+                username=form.get('UserName')
+                email=form.get('EmailAddress')
+                password1=form.get('Password')
+            except:
+                errors.append("Invalid Form")
+                return render(request,"app/register.html",{'errors':form})
 
-        if (len(username)<4 or len(username)>30):
-            errors.append("用户名长度不符合要求")
-            return render(request, "app/register.html", {'form': form, 'errors': errors})
-
-        listsym=['!','@','#','$','%','^','&','*','(',')','-','+','=',',','.',';',':','[',']','{','}','|']
-        for i in range(len(listsym)):
-            if (listsym[i] in username):
-                errors.append("用户名包含特殊字符")
-                return render(request, "app/register.html", {'form': form, 'errors': errors})
-                break
             
-        user = User.objects.create_user(username,email,password1)
-        user.save()
-        #登录前需要先验证
-        newUser=auth.authenticate(username=username,password=password1)
-        if newUser is not None:
-            auth.login(request, newUser)
-            return HttpResponseRedirect("/")
-    else:
-        form =RegisterForm()
-        return render(request, "app/register.html",{'form':form,'title':'注册','year':datetime.now().year})
+            filterResult=User.objects.filter(username=username)
+            if len(filterResult)>0:
+               errors.append("用户名已存在")
+               return render(request, "app/register.html",{'errors':errors})
 
-    return render(request, "app/register.html")
+            #由于智能表单的存在，下面的检查代码实际上不需要了。但为了防止恶意表单攻击，依然保留。
+            if (len(username)<4 or len(username)>30):
+                errors.append("用户名长度不符合要求")
+                return render(request, "app/register.html", { 'errors': errors})
+
+            listsym=['!','@','#','$','%','^','&','*','(',')','-','+','=',',','.',';',':','[',']','{','}','|']
+            for i in range(len(listsym)):
+                if (listsym[i] in username):
+                    errors.append("用户名包含特殊字符")
+                    return render(request, "app/register.html", {'errors': errors})
+
+            user = User.objects.create_user(username,email,password1)
+            user.save()
+            #登录前需要先验证
+            newUser=auth.authenticate(username=username,password=password1)
+            if newUser is not None:
+                auth.login(request, newUser)
+                return HttpResponseRedirect("/")
+        else:
+            return render(request, "app/register.html",)
 
 
 class BookForm_1_dianyuan(forms.Form):

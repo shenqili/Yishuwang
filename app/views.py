@@ -9,7 +9,7 @@ from django.template import RequestContext
 from datetime import datetime
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
-from app.models import book ,NeedBook
+from app.models import book ,NeedBook, recommend 
 from django.template import RequestContext
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -40,57 +40,27 @@ class InfForm(forms.Form):
     description = forms.CharField( max_length=512, error_messages={'required':u'该项不能为空', 'invalid':u'该项输入有误'},required=False)
     contact = forms.CharField(max_length=50, error_messages={'required':u'联系方式不能为空', 'invalid':u'联系方式输入有误'})
     
+def get_recommends(data):#这个函数为以后升级功能提供接口，目前仅返回预览
+    r1=recommend('sfdl','/detail?id=20','static/app/images/2.jpg')
+    r2=recommend('dxwl','/detail?id=30','static/app/images/1.jpg')
+    return [r1,r2,r1,r2,r1,r2]
+
+
 def home(request):
-    """Renders the home page."""
-    assert isinstance(request, HttpRequest)
-    if request.method == 'POST':
-        form = search_form(request.POST)
-        if form.is_valid():
-            book_name = form.cleaned_data['keyword']
-            book_list_all = book.objects.filter(name_book__contains=book_name)
-            panginator = Paginator(book_list_all, 200)
-            page = request.GET.get('page')
-            try:
-                books = panginator.page(page)
-            except PageNotAnInteger:
-                books = panginator.page(1)
-            except EmptyPage:
-                books = panginator.page(panginator.num_pages)
-            form = search_form()
-            return render(
-                request,
-                'app/index.html',
-                {
-                    'title': 'Home Page',
-                    'year': datetime.now().year,
-                    'books': books,
-                    'form': form,
-                }
-            )
-        else:
-            form = search_form()
-            return HttpResponseRedirect('/')
-    else:
-        book_list_all = book.objects.order_by('id').reverse()
-        panginator = Paginator(book_list_all,2)
-        page = request.GET.get('page')
-        try:
-            books = panginator.page(page)
-        except PageNotAnInteger:
-            books = panginator.page(1)
-        except EmptyPage:
-            books = panginator.page(panginator.num_pages)
-        form = search_form()
-        return render(
-            request,
-            'app/index.html',
-            {
-                'title':'Home Page',
-                'year':datetime.now().year,
-                'books':books,
-                'form': form,
-            }
-        )
+
+    recommends=get_recommends(0)#未定义的data
+
+    all_the_books=book.objects.all()
+    sum=len(all_the_books)
+    recent_books=(all_the_books)[sum-9:sum-1]
+    return render(
+        request,
+        'app/index.html',
+        {
+            'recommends':recommends,
+            'books':recent_books,
+        }
+    )
     
     
 def search(request):#独立的搜索功能，实现单个关键字搜索

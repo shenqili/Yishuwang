@@ -1,54 +1,323 @@
-{% extends "app/layout.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<link href="/static/app/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/static/app/js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/static/app/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- start menu -->
+<link href="/static/app/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/static/app/js/memenu.js"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>
+<script src="/static/app/js/simpleCart.min.js"> </script>
+<link rel="stylesheet" type="text/css" href="/static/app/content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/app/content/site.css" />
+<script src="/static/app/scripts/modernizr-2.6.2.js"></script>
+<script src="/static/app/js/responsiveslides.min.js"></script>
+   <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+<!-- slide -->
+</head>
 
-{% block content %}
-    <h1>易书网</h1>
-    <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="keyword" class="col-md-2 control-label">请输入课程名称</label>
-                    <div class="col-md-10">
-                        {{ form.keyword }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="hidden" name="next" value="/" />
-                        <input type="submit" value="搜索" class="btn btn-default" />
-                    </div>
-                </div>
-    </form>
-    {% if books %}
-        <ul>
-        {% for book in books %}
-            <li>课程名称：{{ book.name_book }}</li>
-            <li>年级：{{ book.grade_book }}</li>
-            <li>折扣：{{ book.discount_book }}</li>
-            <li>专业：{{ book.major_book }}</li>
-            <li>发布者：<a href="{% url 'publicinf' book.master %}" >{{ book.master }}</a> </li>
-            <li>发布者邮箱：{{ book.master.email }}</li>
-            <img src="/media/{{ book.photo_book}}" height="300" width="200"  />
-            <a href="/{{book.id}}">详情</a>
-
-            <hr />  <!--想弄个分割线出来但是效果不太一样，可能是css的原因-->
-        {% endfor %}
-        </ul>
-        <div class="pagination">
-    <span class="step-links">
-        {% if books.has_previous %}
-            <a href="?page={{ books.previous_page_number }}">上一页</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ books.number }} of {{ books.paginator.num_pages }}.
-        </span>
-
-        {% if books.has_next %}
-            <a href="?page={{ books.next_page_number }}">下一页</a>
-        {% endif %}
-    </span>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" style="color:green">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a href="/" class="navbar-brand"></a> </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'home' %}">首页</a></li>
+      </ul>
+      {% include 'app/loginpartial.html' %} </div>
+  </div>
 </div>
-    {% endif %}
+<!--header-->
 
-{% endblock %}
+<div class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="col-sm-4 world">
+        <ul >
+          <li>
+            <select class="in-drop">
+              <option>电院</option>
+              <option>机动学院</option>
+              <option>安泰</option>
+            </select>
+          </li>
+          <li>
+            <select class="in-drop1">
+              <option>全部</option>
+              <option>大一</option>
+              <option>大二</option>
+              <option>大三</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-4 logo"> <a href="/"><img src="/static/app/images/logo.png" alt=""></a> </div>
+      <div class="col-sm-4 header-left">
+        <div class="cart box_1"> </div>
+        <div class="clearfix"> </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <div class="head-top">
+    <div class="col-md-2 number"> <span><i class="glyphicon glyphicon-phone"></i></span> </div>
+    <div class="col-md-8 h_menu4">
+      <ul class="memenu skyblue">
+        <li class=" grid"><a  href="/">Home</a></li>
+        <li><a  href="#">教材</a>
+          <div class="mepanel">
+            <div class="row">
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="grid"><a  href="#">教辅</a>
+          <div class="mepanel">
+            <div class="row">
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a  href="/about">关于</a></li>
+        <li><a class="color6" href="/contact">联系方式</a></li>
+      </ul>
+    </div>
+    <div class="col-md-2 search"> <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a> </div>
+    <div class="clearfix"> </div>
+    <!---pop-up-box---->
+    <script type="text/javascript" src="/static/app/js/modernizr.custom.min.js"></script>
+    <link href="/static/app/content/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="/static/app/js/jquery.magnific-popup.js" type="text/javascript"></script>
+    <!---//pop-up-box---->
+    <div id="small-dialog" class="mfp-hide">
+      <div class="search-top">
+        <div class="login">
+        <form action="\search" method="post">
+          {% csrf_token %}
+          <input type="submit" value="">
+          <input type="text" name="keyword" value="你想找什么？" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+          </form>
+        </div>
+        <p> </p>
+      </div>
+    </div>
+    <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
 
+						});
+				</script>
+    <!---->
+  </div>
+</div>
+</div>
+<!--//header-->
+<!--banner-->
+<div class="banner">
+	<div class="col-sm-3 banner-mat">
+		<img class="img-responsive"	src="/static/app/images/ba1.jpg" alt="">
+	</div>
+	<div class="col-sm-6 matter-banner">
+	 	<div class="slider">
+	    	<div class="callbacks_container">
+	      		<ul class="rslides" id="slider">
+	        		{% for item in recommends %}
+                    <li>
+	          			<a href="{{item.url}}"><img src="{{item.pic}}" alt="">
+</a>                    </li>
+                    {% endfor %}
+	      		</ul>
+	 	 	</div>
+		</div>
+	</div>
+	<div class="col-sm-3 banner-mat">
+		<img class="img-responsive" src="/static/app/images/ba.jpg" alt="">
+	</div>
+	<div class="clearfix"> </div>
+</div>
+<!--//banner-->
+<div class="copyrights">Collect from</div>
+<!--content-->
+<div class="content">
+	<div class="container">
+		<div class="content-top">
+			<h1>Recent Books</h1>
+            {% for item in books %}
+			{% if forloop.counter == '1' or forloop.counter == '5' %}
+            <div class="content-top1">{% endif %}
+				<div class="col-md-3 col-md2">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="/detail?id={{item.id}}">
+							<img class="img-responsive" src="/media/{{item.photo_book}}" alt="" />
+						</a>
+						<h3><a href="/detail?id={{item.id}}">{{item.name_book}}</a></h3>
+						<div class="price">
+								<h5 class="item_price">{{item.discount_book}}折</h5>
+								<a href="/detail?id={{item.id}}" class="item_add">详情</a>
+								<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>	
+			{% if forloop.counter == '4' or forloop.counter == '8' %}
+			<div class="clearfix"> </div>
+			</div>	
+            {% endif %}
+            {% endfor %}
+            
+		</div>
+	</div>
+</div>
+<!--//content-->
+<!--footer-->
+<div class="footer-bottom">
+  <div class="container">
+    <div class="col-sm-3 footer-bottom-cate"> </div>
+    <div class="col-sm-3 footer-bottom-cate"> </div>
+    <div class="col-sm-3 footer-bottom-cate"> </div>
+    <div class="col-sm-3 footer-bottom-cate cate-bottom">
+      <h6>Our Address</h6>
+      <ul>
+        <li>上海市东川路800号 </li>
+        <li>邮编：200240 </li>
+        <li class="phone">Mail : 1419740049@qq.com</li>
+      </ul>
+    </div>
+    <div class="clearfix"> </div>
+    <p class="footer-class">Copyright &copy; 2016 Yishuwang name All rights reserved.</p>
+  </div>
+</div>
+</div>
 
+<!--//footer-->
+</body>
+</html>

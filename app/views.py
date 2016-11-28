@@ -91,6 +91,67 @@ def home(request):
                 'form': form,
             }
         )
+    
+    
+def search(request):#独立的搜索功能，实现单个关键字搜索
+    if request.method=='POST':
+       try:
+            searchForm=request.POST
+            keyword=searchForm.get('keyword')
+            book_list_all = book.objects.filter(name_book__icontains=keyword)
+
+            info=''
+            if len(book_list_all)==0:
+                book_list_all=book.objects.all()
+                info='没有找到！你还可以看看：'
+
+            paginator = Paginator(book_list_all, 9)
+            books = paginator.page(1)
+            return render(
+                    request,
+                    'app/items.html',
+                    {
+                        'books': books,
+                        'keyword':{'keyword':keyword},
+                        'info':{'info':info}
+                    }
+                    )
+       except:
+           return HttpResponseRedirect('/')
+
+    elif request.method=='GET':
+        try:
+
+            page = request.GET.get('page')
+            keyword = request.GET.get('keyword')
+            book_list_all = book.objects.filter(name_book__icontains=keyword)
+
+            info="搜索结果"
+            if len(book_list_all)==0:
+                book_list_all=book.objects.all()
+                info='没有找到！你还可以看看：'
+
+            paginator = Paginator(book_list_all, 9)
+            try:
+                    books = paginator.page(page)
+            except PageNotAnInteger:
+                    books = paginator.page(1)
+            except EmptyPage:
+                    books = paginator.page(paginator.num_pages)
+            return render(
+                    request,
+                    'app/items.html',
+                    {
+                        'books': books,
+                        'keyword':{'keyword':keyword},
+                        'info':{'info':info}
+                    }
+                    )
+        except:
+           return HttpResponseRedirect('/')
+    else:
+            return HttpResponseRedirect('/')
+
 
 def contact(request):
     """Renders the contact page."""

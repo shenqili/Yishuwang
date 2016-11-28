@@ -31,6 +31,13 @@ class book(models.Model):
 
     def __str__(self):
         return self.name_book
+    
+class recommend():#这个类用于responsiveslides上推荐的图书。此类图片格式不同，亦可为通知页面，故应由编辑挑选，与book不兼容。
+    def __init__(self,name,url,pic,id=''):
+        self.name=name
+        self.url=url
+        self.pic=pic
+        self.id=id
 
 class NeedBook(models.Model):
     master = models.ForeignKey(User, on_delete=models.CASCADE)

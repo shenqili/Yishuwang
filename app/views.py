@@ -100,7 +100,7 @@ def search(request):#独立的搜索功能，实现单个关键字搜索
             keyword=searchForm.get('keyword')
             book_list_all = book.objects.filter(name_book__icontains=keyword)
 
-            info=''
+            info='搜索结果'
             if len(book_list_all)==0:
                 book_list_all=book.objects.all()
                 info='没有找到！你还可以看看：'

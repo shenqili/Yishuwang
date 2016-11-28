@@ -200,10 +200,11 @@
     <div id="small-dialog" class="mfp-hide">
       <div class="search-top">
         <div class="login">
-        <form>
+        <form action="\search" method="post">
+          {% csrf_token %}
           <input type="submit" value="">
-          <input type="text" value="你想找什么？" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-          </form>
+          <input type="text" name="keyword" value="你想找什么？" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+        </form>
         </div>
         <p> </p>
       </div>

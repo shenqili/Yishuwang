@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>搜索结果</title>
+<link href="/static/app/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/static/app/js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/static/app/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="lalala" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- start menu -->
+<link href="/static/app/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/static/app/js/memenu.js"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>
+<script src="/static/app/js/simpleCart.min.js"> </script>
+<link rel="stylesheet" type="text/css" href="/static/app/content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/app/content/site.css" />
+<script src="/static/app/scripts/modernizr-2.6.2.js"></script>
+<!-- slide -->
+
+<style >
+.pagination{
+	font-size:16px;
+	font-weight:bolder;
+	margin:auto;
+}
+</style>
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" style="color:green">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a href="/" class="navbar-brand"></a> </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'home' %}">首页</a></li>
+      </ul>
+      {% include 'app/loginpartial.html' %} </div>
+  </div>
+</div>
+<!--header-->
+
+<div class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="col-sm-4 world">
+        <ul >
+          <li>
+            <select class="in-drop">
+              <option>电院</option>
+              <option>机动学院</option>
+              <option>安泰</option>
+            </select>
+          </li>
+          <li>
+            <select class="in-drop1">
+              <option>全部</option>
+              <option>大一</option>
+              <option>大二</option>
+              <option>大三</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-4 logo"> <a href="/"><img src="/static/app/images/logo.png" alt=""></a> </div>
+      <div class="col-sm-4 header-left">
+        <div class="cart box_1"> </div>
+        <div class="clearfix"> </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <div class="head-top">
+    <div class="col-md-2 number"> <span><i class="glyphicon glyphicon-phone"></i></span> </div>
+    <div class="col-md-8 h_menu4">
+      <ul class="memenu skyblue">
+        <li class=" grid"><a  href="/">Home</a></li>
+        <li><a  href="#">教材</a>
+          <div class="mepanel">
+            <div class="row">
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="grid"><a  href="#">教辅</a>
+          <div class="mepanel">
+            <div class="row">
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col1">
+                <div class="h_nav">
+                  <h4>类别</h4>
+                  <ul>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                    <li><a href="products.html">类别</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a  href="/about">关于</a></li>
+        <li><a class="color6" href="/contact">联系方式</a></li>
+      </ul>
+    </div>
+    <div class="col-md-2 search"> <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a> </div>
+    <div class="clearfix"> </div>
+    <!---pop-up-box----> 
+    <script type="text/javascript" src="/static/app/js/modernizr.custom.min.js"></script>
+    <link href="/static/app/content/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="/static/app/js/jquery.magnific-popup.js" type="text/javascript"></script> 
+    <!---//pop-up-box---->
+    <div id="small-dialog" class="mfp-hide">
+      <div class="search-top">
+        <div class="login">
+          <form method="post" action="/search">
+            {% csrf_token %}
+            <input type="submit" value="">
+            <input type="text" name='keyword' value="你想找什么？" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+          </form>
+        </div>
+        <p> </p>
+      </div>
+    </div>
+    <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+																						
+						});
+				</script> 
+    <!----> 
+  </div>
+</div>
+</div>
+<!--content-->
+<div class="products">
+  <div class="container">
+    <h1>{{info.info}}</h1>
+    <div class="col-md-9"> {% for book in books %}
+      {% if forloop.counter in "147" %}
+      <div class="content-top1"> {% endif %}
+        <div class="col-md-4 col-md3">
+          <div class="col-md1 simpleCart_shelfItem"> <a href=""> <img class="img-responsive" src="/media/{{book.photo_book}}" alt="" /> </a>
+            <h3><a href="">{{ book.name_book }}</a></h3>
+            <div class="price">
+              <h5 class="item_price">{{ book.discount_book }}折</h5>
+              <a href="/detail?number={{book.number_book}}" class="item_add">详情</a>
+              <div class="clearfix"> </div>
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter in "369" %}
+        	<div class="clearfix"> </div>
+         </div>
+      {% endif %}
+      {% endfor %} 
+      <div class="clearfix"> </div>
+      </div>
+      
+      <div class="col-md-3 product-bottom"> 
+        <!--categories-->
+        <div class=" rsidebar span_1_of_left">
+          <h3 class="cate">Categories</h3>
+          <ul class="menu-drop">
+            <li class="item1"><a href="#">理科 </a>
+              <ul class="cute">
+                <li class="subitem1"><a href="/search?keyword=数学">数学 </a></li>
+                <li class="subitem2"><a href="/search?keyword=物理">物理 </a></li>
+                <li class="subitem3"><a href="/search?keyword=化学">化学 </a></li>
+              </ul>
+            </li>
+            <li class="item2"><a href="#">工科 </a>
+              <ul class="cute">
+                <li class="subitem1"><a href="/search?keyword=机械动力">机械动力 </a></li>
+                <li class="subitem2"><a href="/search?keyword=船舶建筑">船舶建筑 </a></li>
+                <li class="subitem3"><a href="/search?keyword=计算机">计算机 </a></li>
+              </ul>
+            </li>
+            <li class="item3"><a href="#">文科</a>
+              <ul class="cute">
+                <li class="subitem1"><a href="/search?keyword=历史学">历史学</a></li>
+                <li class="subitem2"><a href="/search?keyword=语言学">语言学 </a></li>
+                <li class="subitem3"><a href="/search?keyword=媒体与设计">媒体与设计</a></li>
+              </ul>
+            </li>
+            <li class="item4"><a href="#">文学</a>
+              <ul class="cute">
+                <li class="subitem1"><a href="/search?keyword=小说">小说</a></li>
+                <li class="subitem2"><a href="/search?keyword=散文集">散文集</a></li>
+                <li class="subitem3"><a href="/search?keyword=杂文集">杂文集</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!--initiate accordion--> 
+        <script type="text/javascript">
+							$(function() {
+							    var menu_ul = $('.menu-drop > li > ul'),
+							           menu_a  = $('.menu-drop > li > a');
+							    menu_ul.hide();
+							    menu_a.click(function(e) {
+							        e.preventDefault();
+							        if(!$(this).hasClass('active')) {
+							            menu_a.removeClass('active');
+							            menu_ul.filter(':visible').slideUp('normal');
+							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+							        } else {
+							            $(this).removeClass('active');
+							            $(this).next().stop(true,true).slideUp('normal');
+							        }
+							    });
+							
+							});
+						</script> 
+        <!--//menu--> 
+
+        <!--tag-->
+        <div class="tag">
+          <h3 class="cate">Tags</h3>
+          <div class="tags">
+            <ul>
+              <li><a href="/search?keyword=算法">算法</a></li>
+              <li><a href="/search?keyword=数电">数电</a></li>
+              <li><a href="/search?keyword=大学物理">大物</a></li>
+              <li><a href="/search?keyword=马原">马原</a></li>
+              <li><a href="/search?keyword=思修">思修</a></li>
+              <li><a href="/search?keyword=近代纲">近代纲</a></li>
+              <li><a href="/search?keyword=基电">基电</a></li>
+              <li><a href="/search?keyword=线性代数">线代</a></li>
+              <li><a href="/search?keyword=微积分">微积分</a></li>
+              <li><a href="/search?keyword=数理方法">数理</a></li>
+              <li><a href="/search?keyword=信号与系统">信号</a></li>
+              <li><a href="/search?keyword=经济学">经济学</a></li>
+              <div class="clearfix"> </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <!--//content--> 
+  <!--footer-->
+  <div class="footer">
+    <div class="container">
+      <div class="footer-top">
+      <table>
+      <tr>
+      <td style="width:10%">
+        <div></div></td>
+         <td> <div class="pagination"> <span class="step-links"> {% if books.has_previous %} <a href="?keyword={{keyword.keyword}}&page={{ books.previous_page_number }}"><button type="button" class="btn btn-lg btn-success">上一页</button></a> {% endif %} <span class="current btn btn-lg btn-success"> Page {{ books.number }} of {{ books.paginator.num_pages }} </span> {% if books.has_next %} <a href="?keyword={{keyword.keyword}}&page={{ books.next_page_number }}"><button type="button" class="btn btn-lg btn-success">下一页</button></a> {% endif %} </span> </div> </td><td style="width:10%"><div></div></td></tr></table>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+    </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="col-sm-3 footer-bottom-cate"> </div>
+      <div class="col-sm-3 footer-bottom-cate"> </div>
+      <div class="col-sm-3 footer-bottom-cate"> </div>
+      <div class="col-sm-3 footer-bottom-cate cate-bottom">
+        <h6>Our Address</h6>
+        <ul>
+          <li>上海市东川路800号 </li>
+          <li>邮编：200240 </li>
+          <li class="phone">Mail : 1419740049@qq.com</li>
+        </ul>
+      </div>
+      <div class="clearfix"> </div>
+      <p class="footer-class">Copyright &copy; 2016 Yishuwang name All rights reserved.</p>
+    </div>
+  </div>
+</div>
+<!--//footer-->
+</body>
+</html>

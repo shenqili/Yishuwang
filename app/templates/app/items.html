@@ -245,8 +245,8 @@
       {% if forloop.counter in "147" %}
       <div class="content-top1"> {% endif %}
         <div class="col-md-4 col-md3">
-          <div class="col-md1 simpleCart_shelfItem"> <a href=""> <img class="img-responsive" src="/media/{{book.photo_book}}" alt="" /> </a>
-            <h3><a href="">{{ book.name_book }}</a></h3>
+          <div class="col-md1 simpleCart_shelfItem"> <a href="/detail?id={{book.id}}"> <img class="img-responsive" src="/media/{{book.photo_book}}" alt="" /> </a>
+            <h3><a href="/detail?id={{book.id}}">{{ book.name_book }}</a></h3>
             <div class="price">
               <h5 class="item_price">{{ book.discount_book }}折</h5>
               <a href="/detail?id={{book.id}}" class="item_add">详情</a>

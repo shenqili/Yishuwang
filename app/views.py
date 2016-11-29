@@ -46,6 +46,16 @@ def get_recommends(data):#这个函数为以后升级功能提供接口，目前
     return [r1,r2,r1,r2,r1,r2]
 
 
+def get_similar(id_item):#这个函数为以后升级功能提供接口，目前仅返回预览
+    all_the_books=book.objects.all()
+    sum=len(all_the_books)
+    if sum>4:
+        recent_books=(all_the_books)[sum-5:sum-1]
+    else:
+        recent_books=all_the_books
+    return recent_books
+
+
 def home(request):
 
     recommends=get_recommends(0)#未定义的data
@@ -124,6 +134,28 @@ def search(request):#独立的搜索功能，实现单个关键字搜索
            return HttpResponseRedirect('/')
     else:
             return HttpResponseRedirect('/')
+
+def detail(request):
+    if request.method=="GET":
+        try:
+            id_item = request.GET.get('id')
+            print( id_item)
+            item = book.objects.get(id=str(id_item))
+            print(item)
+            similar=get_similar(id_item)
+            print(similar)
+            return render(
+                request,
+                'app/single.html',
+                {
+                    'item':item,
+                    'similar':similar,
+                }
+            )
+        except:
+           return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
 
 
 def contact(request):

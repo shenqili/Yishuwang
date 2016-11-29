@@ -52,7 +52,10 @@ def home(request):
 
     all_the_books=book.objects.all()
     sum=len(all_the_books)
-    recent_books=(all_the_books)[sum-9:sum-1]
+    if sum>8:
+        recent_books=(all_the_books)[sum-9:sum-1]
+    else:
+        recent_books=all_the_books
     return render(
         request,
         'app/index.html',

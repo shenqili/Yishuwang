@@ -21,6 +21,7 @@ urlpatterns = [
     # Examples:
     url(r'^$', app.views.home, name='home'),
     url(r'^search$',app.views.search,name='search'),
+    url(r'^detail$',app.views.detail,name='detail'),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
     url(r'^register$', app.views.register, name='register'),

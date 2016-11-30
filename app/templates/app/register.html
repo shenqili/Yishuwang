@@ -235,7 +235,9 @@
 <div class="container register">
   <h1>注册</h1>
   <form name="form1" method="post">
-    <div class="col-md-6  register-top-grid"> {% for error in errors %}
+    <div class="col-md-6  register-top-grid">
+    {% csrf_token %}
+     {% for error in errors %}
       <p style="color:#ff0000">错误：{{error}}</p>
       {% endfor %}
       <div class="mation"> <span id="UN">用户名称</span>

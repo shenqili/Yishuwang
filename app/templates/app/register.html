@@ -230,18 +230,17 @@
     <!----> 
   </div>
 </div>
-</div>
 <!--//header-->
 <div class="container register">
   <h1>注册</h1>
   <form name="form1" method="post">
     <div class="col-md-6  register-top-grid">
-    {% csrf_token %}
-     {% for error in errors %}
+      {% csrf_token %}
+      {% for error in errors %}
       <p style="color:#ff0000">错误：{{error}}</p>
       {% endfor %}
       <div class="mation"> <span id="UN">用户名称</span>
-        <input type="text" name="UserName"   size="12" maxlength="30">
+        <input type="text" name="UserName"   size="12" maxlength="12">
         <span id="EA">邮箱地址</span>
         <input type="text"	name="EmailAddress" >
       </div>
@@ -252,9 +251,9 @@
         <span id="CP">再次输入密码</span>
         <input type="password" name="ConfirmPassword"  onblur="ConfirmPassword_onblur()" size="12" maxlength="12">
         <div class="clearfix"> </div>
-        <span id="CB">请阅读<a herf="">用户协议</a></span>
+        <a herf="/user_aggrement/"><span id="CB">请阅读用户协议</span></a>
         <label class="checkbox">
-          <input type="checkbox" name="checkbox" checked=false>
+          <input type="checkbox" name="checkbox">
           <i> </i>我同意用户协议</label>
       </div>
     </div>
@@ -266,7 +265,6 @@
       <div class="clearfix"> </div>
     </form>
   </div>
-</div>
 </div>
 <div class="footer-bottom">
   <div class="container">
@@ -284,7 +282,6 @@
     <div class="clearfix"> </div>
     <p class="footer-class">Copyright &copy; 2016 Yishuwang name All rights reserved.</p>
   </div>
-</div>
 </div>
 <script>
 function btnCheckForm_onclick()

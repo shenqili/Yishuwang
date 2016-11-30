@@ -50,7 +50,7 @@ def get_similar(id_item):#这个函数为以后升级功能提供接口，目前
     all_the_books=book.objects.all()
     sum=len(all_the_books)
     if sum>4:
-        recent_books=(all_the_books)[sum-5:sum-1]
+        recent_books=(all_the_books)[sum-4:sum-1]
     else:
         recent_books=all_the_books
     return recent_books

@@ -2,27 +2,28 @@
 <html>
 <head>
 <title>{{ title }}</title>
-<link href="/static/app/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  {% load static %}
+<link href="{% static 'app/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/static/app/js/jquery.min.js"></script>
+<script src="{% static 'app/js/jquery.min.js' %}"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="/static/app/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'app/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="lalala" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--改变navbar颜色-->
-<link href="/static/app/css/mynavbar.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'app/css/mynavbar.css' %}" rel="stylesheet" type="text/css" media="all" />
 <!-- start menu -->
-<link href="/static/app/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="/static/app/js/memenu.js"></script>
+<link href="{% static 'app/css/memenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="{% static 'app/js/memenu.js' %}"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>
-<script src="/static/app/js/simpleCart.min.js"> </script>
-<link rel="stylesheet" type="text/css" href="/static/app/content/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/static/app/content/site.css" />
-<script src="/static/app/scripts/modernizr-2.6.2.js"></script>
+<script src="{% static 'app/js/simpleCart.min.js' %}"> </script>
+<link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+<script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
 <!-- slide -->
 </head>
 
@@ -63,7 +64,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-sm-4 logo"> <a href="/"><img src="/static/app/images/logo.png" alt=""></a> </div>
+      <div class="col-sm-4 logo"> <a href="/"><img src="{% static 'app/images/logo.png' %}" alt=""></a> </div>
       <div class="col-sm-4 header-left">
         <div class="cart box_1"> </div>
         <div class="clearfix"> </div>
@@ -195,9 +196,9 @@
     <div class="col-md-2 search"> <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a> </div>
     <div class="clearfix"> </div>
     <!---pop-up-box----> 
-    <script type="text/javascript" src="/static/app/js/modernizr.custom.min.js"></script>
-    <link href="/static/app/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-    <script src="/static/app/js/jquery.magnific-popup.js" type="text/javascript"></script> 
+    <script type="text/javascript" src="{% static 'app/js/modernizr.custom.min.js' %}"></script>
+    <link href="{% static 'app/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <script src="{% static 'app/js/jquery.magnific-popup.js' %}" type="text/javascript"></script> 
     <!---//pop-up-box---->
     <div id="small-dialog" class="mfp-hide">
       <div class="search-top">
@@ -258,7 +259,7 @@
 </div>
 
 <!--//footer-->
-<script src="/static/app/scripts/bootstrap.js"></script> 
-<script src="/static/app/scripts/respond.js"></script> 
+<script src="{% static 'app/scripts/bootstrap.js' %}"></script> 
+<script src="{% static 'app/scripts/respond.js' %}"></script> 
 </body>
 </html>
